@@ -1151,6 +1151,12 @@ pre code {
             flex: 0 0 100%;
     max-width: 100%;
   }
+  .col-md-13{
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 200%;
+            flex: 0 0 200%;
+    max-width: 200%;
+  }
   .order-md-first {
     -webkit-box-ordinal-group: 0;
         -ms-flex-order: -1;
@@ -4318,11 +4324,10 @@ input[type="button"].btn-block {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  align: right;
+  
 }
 
 .nav-link {
-
   padding: 0.5rem 1rem;
   align: right;
 }
@@ -9301,6 +9306,8 @@ button.bg-dark:focus {
   .mx-md-4 {
     margin-left: 1.5rem !important;
   }
+  
+ 
   .m-md-5 {
     margin: 3rem !important;
   }

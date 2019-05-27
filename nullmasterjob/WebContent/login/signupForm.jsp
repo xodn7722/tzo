@@ -1,56 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script language="javascript">
-function checkForm(){
-	 
-	 
-	 
-	   var c = document.my;
-	   
-	  
-	   if(c.email_id.value==""){
-		  alert("아이디를입력해주세요");
-		  c.id.focus();
-		  return false;	  
-	   }
-	   
-	   
-	   if(c.pw.value==""){
-		 c.pw.value("비밀번호를입력해주세요");
-		 c.pw.focus();
-		 return false;
-	   }else{
-	        if(c.pw.value.length < 8 || c.pw.value.length > 15){
-		    alert("비밀번호는 8~15자까지만 가능합니다"); 
-		    c.pw.focus();
-			return false;
-	        }else{
-	        	if(c.pw.value.match(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/)) {
-	        		    alert("비밀번호는 영문,숫자,특수문자(!@$%^&* 만 허용)를 사용하여 6~16자까지, 영문은 대소문자를 구분합니다.");
-	        		    return false;
-	        	    }
-	            }
-	        }
-	   
-	   
-	  
-	   
-	   if(!c.name.value){
-		   alert("이름을입력해주세요");
-		   c.name.focus();
-		   return false;
-	   }
-	   
-	
-	   if(!c.tel.value){
-		   alert("연락처를입력해주세요");
-		   c.tel.focus();
-		   return false;
-	   }
-	 
-}
 
-</script>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +11,7 @@ function checkForm(){
 <jsp:include page="/menu/menu.jsp" />
 </div><br/>
 <h1 align="center" class="">회원가입</h1></br>
-<form action="./signupPro.jsp" method="post" name="my" onsubmit="return checkForm();">
+<form action="./signupPro.jsp" method="post" name="my" >
 <fieldset>
 <div class="form-group" align="center">
    <div class="col-sm-4">
@@ -74,10 +24,17 @@ function checkForm(){
       </div>
       <div class="form-group row">
         <label class="col-sm-1 col-form-label" for="exampleInputPassword1">PASSWORD</label>
-        <input type="password" class="form-control ml-2 mx-2" id="pw" name="pw"  placeholder="Password">
+        <input type="password" class="form-control ml-2 mx-2" id="pw" name="pw"  placeholder="PASSWORD">
       </div>
       <div class="mb-2 my-2">
         <small id="passwordHelp" class="form-text text-muted">비밀번호는 영문숫자특수문자조합으로만들어주세요</small>
+      </div>
+       <div class="form-group row">
+        <label class="col-sm-1 col-form-label" for="exampleInputPassword1">PASSWORD CONFIRM</label>
+        <input type="password" class="form-control ml-2 mx-2" id="pw2" name="pw2"  placeholder="PASSWORD">
+      </div>
+      <div class="mb-2 my-2">
+        <small id="passwordHelp" class="form-text text-muted">비밀번호를 확인해주세요</small>
       </div>
        <div class="form-group row">
         <label class="col-sm-1 col-form-label">NAME</label>

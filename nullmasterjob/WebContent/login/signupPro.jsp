@@ -6,6 +6,15 @@
 <jsp:setProperty property="*" name="vo" />
 
 <%
+   String id = request.getParameter("email_id");
    MemberDAO dao = MemberDAO.getInstance();
-   dao.insertMember(vo);
-%>
+   int check = dao.confirmId(id);
+
+   if( check == 1){%>
+	response.sendredirect("")
+	 <%   
+   }else{dao.insertMember(vo);%>
+   회원가입을축하드립니다
+   <%}%>  
+    
+

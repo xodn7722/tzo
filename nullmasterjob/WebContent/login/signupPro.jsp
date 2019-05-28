@@ -11,10 +11,15 @@
    int check = dao.confirmId(id);
 
    if( check == 1){%>
-	response.sendredirect("")
-	 <%   
-   }else{dao.insertMember(vo);%>
-   회원가입을축하드립니다
+   <script>
+   alert("이미사용중인이메일아이디입니다");
+   history.go(-1);
+   </script>
+   <%}else{dao.insertMember(vo);%>
+    <script>
+    alert("회원가입을 축하드립니다");
+    location.href="loginForm.jsp";
+   </script>
    <%}%>  
     
 

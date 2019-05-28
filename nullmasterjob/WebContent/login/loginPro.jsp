@@ -4,7 +4,7 @@
 <h1> loginPro</h1>
 
 <% 
-   String id = request.getParameter("id");
+   String id = request.getParameter("email_id");
    String pw = request.getParameter("pw");
    MemberDAO dao = MemberDAO.getInstance();
    boolean result = dao.loginCheck(id,pw);

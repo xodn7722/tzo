@@ -11,6 +11,6 @@
 <%
    String id = request.getParameter("email");
 session.setAttribute("loginID", id);
-response.sendRedirect("/nullmasterjob/login/loginForm.jsp"); %>
+response.sendRedirect("/taewoo/login/loginForm.jsp"); %>
 </body>
 </html>

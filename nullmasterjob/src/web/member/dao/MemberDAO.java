@@ -111,4 +111,29 @@ public class MemberDAO {
 		return list;
 		
 	}
+	
+	public int confirmId(String id)throws Exception{ //아이디중복확인
+    	int x=-1;
+    	try {
+    		conn = getConnection();
+    		pstmt = conn.prepareStatement("select email_id from member where email_id=?");
+    		pstmt.setString(1, id);
+    		
+    		rs = pstmt.executeQuery();
+    		if(rs.next()) {
+    			x = 1;
+    		}else {
+    			x= -1;
+    		}
+    				
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}finally {
+    		if(rs!=null) try {rs.close();} catch(SQLException e) {}
+    		if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+    		if(conn!=null) try {conn.close();} catch(SQLException e) {}
+    	}
+    	return x;
+    	
+    }
 }

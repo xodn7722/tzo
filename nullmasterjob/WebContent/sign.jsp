@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/taewoo/resources/css/bootstrap.min.css" />
 <title>회원 가입</title>
 <% request.setCharacterEncoding("UTF-8");     %>
 	<script>
@@ -80,7 +80,7 @@
 	</script>
 </head>
 <body>
-		<jsp:include page="menu.jsp" />
+		
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-4">회원 가입 </h1>
@@ -186,6 +186,6 @@
 			</form>
 			</div>
 
-	<jsp:include page="footer.jsp" />
+	
 </body>
 </html>

@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <link rel="stylesheet" href="/nullmasterjob/resources/bootstrap.css">   
+ <link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
+<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
 <!DOCTYPE html>
-
 <div >
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">nullmaster</a>
@@ -25,8 +27,16 @@
         <a class="nav-link" href="#">추천</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/nullmasterjob/login/loginForm.jsp">회원가입/로그인</a>
-      </li>
+        <% 
+        String r = "회원가입/로그인";
+        String ro = "내정보/로그아웃";
+        String m = null;
+        if(session.getAttribute("loginID") == null){
+        m = r;%>    
+        <a class="nav-link " href="/taewoo/login/loginForm.jsp"><%=m %></a>
+        <%}else{ m = ro; %>
+        <a class="nav-link " href="/taewoo/login/loginmain.jsp"><%=m %></a>
+        <%}%>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search">

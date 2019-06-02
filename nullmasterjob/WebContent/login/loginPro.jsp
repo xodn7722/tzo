@@ -8,11 +8,13 @@
    String pw = request.getParameter("pw");
    MemberDAO dao = MemberDAO.getInstance();
    boolean result = dao.loginCheck(id,pw);
-   
+  
    if(result){
-	   session.setAttribute("loginID", id);
-	   response.sendRedirect("loginmain.jsp");
-	   
+       
+        	session.setAttribute("loginID", id);
+     	   response.sendRedirect("loginmain.jsp");
+ 
+    
    }else{%>
    <script>
      alert("id/pw를확인하세요");

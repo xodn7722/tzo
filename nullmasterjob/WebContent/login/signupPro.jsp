@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ page import="util.SHA256"%>
+
+<%@ page import="java.io.PrintWriter"%>
+
 <%@ page import="web.member.dao.MemberDAO" %>
 <% request.setCharacterEncoding("UTF-8");%>
 <jsp:useBean id="vo" class="web.member.vo.MemberVO" />
@@ -15,11 +20,17 @@
    alert("이미사용중인이메일아이디입니다");
    history.go(-1);
    </script>
-   <%}else{dao.insertMember(vo);%>
-    <script>
-    alert("회원가입을 축하드립니다");
-    location.href="loginForm.jsp";
-   </script>
-   <%}%>  
-    
+   <%}
+   
+   else{
+	   
+	     
+	       dao.insertMember(vo);
+   
+   	       session.setAttribute("loginID", id);
+           response.sendRedirect("loginmain.jsp");
+		
+  }%>  
+   
+  
 

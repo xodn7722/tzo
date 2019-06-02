@@ -13,46 +13,39 @@
 <div>
 <jsp:include page="/menu/menu.jsp"/></div><br/>
 <div align="center"> <h1> 로그인 </h1></div><br/>
-<form action="./loginPro.jsp" method="post" class="form=horizontal" role="form">
-<div class="form-group" align="center">
-   <div class="col-sm-4">
-      <div class="custom-control-inline">
-      <label class="mb-2 my-2" for="exampleInputEmail1">Email</label>
-      <input type="email" class="form-control ml-2 mx-2" name="email_id" placeholder="@email">
-      </div>
-        <div class="mb-2 my-2">
-        <small id="emailHelp" class="form-text text-muted"></small>
+<div class="login-form">
+    <form action="./loginPro.jsp" method="post">
+        <div class="form-group" align="center" >       
+        <div class="form-group col-sm-3">
+            <input type="email" class="form-control" placeholder="Email" name="email_id" required="required">
         </div>
-      <div class="custom-control-inline">
-      <label class="mb-2 my-2" for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control ml-2 mx-2" id="pw" name="pw" placeholder="Password"></span>
+        <div class="form-group col-sm-3">
+            <input type="password" class="form-control" placeholder="Password" name="pw" required="required">
         </div>
-        <div class="mb-2 my-2">
-        <small id="passwordHelp" class="form-text text-muted"></small>
+        <div class="form-group col-sm-3">
+            <button type="submit" class="btn btn-primary btn-block">로그인</button>
+         <div class="form-group mt-1 my-1">
+	       <div class="dropdown">
+	         <button class="btn btn-primary  btn-block dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+	                   소셜로그인
+	         </button>
+	           <div class="dropdown-menu">
+	              <a class="dropdown-item" href="#">link1</a>
+	              <a class="dropdown-item" href="#">link2</a>
+	              <a class="dropdown-item" href="#">link3</a>
+	           </div>
+	        </div>
+          </div>  
+
+            <label class="float-left checkbox-inline"><input type="checkbox"> Remember me</label>
+            <a href="./passwordfind.jsp" target="_blank"  
+            onclick="window.open(this.href,'_blank','width=500,height=300, scrollbars=yes');return false;" 
+            class="float-right">비밀번호찾기</a>
         </div> 
-       <div class="custom-control-inline">
-         <div class="container">
-         <input type="submit" class="btn btn-primary" value="로그인" />
-         </div>
-         <div class="container">
-         <input type="button" value="회원가입" class="btn btn-primary" onclick="location.href = 'signupForm.jsp'" />
-         </div>
-   <div class="container">
-	<div class="dropdown" id="mydropdown">
-	  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-	소셜로그인
-	  </button>
-	  <div class="dropdown-menu">
-	    <a class="dropdown-item" href="#">link1</a>
-	    <a class="dropdown-item" href="#">link2</a>
-	    <a class="dropdown-item" href="#">link3</a>
-	  
-	  </div>
-	</div>
-       </div>       
-   </div>
+        </div>       
+    </form><br/>
+    <p class="text-center"><a href="signupForm.jsp" >회원가입</a></p>
 </div>
-</form>
 </body>
 <%}else{ response.sendRedirect("loginmain.jsp");}%>
 </html>

@@ -18,7 +18,7 @@
         <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/nullmaster/recruit/boardRecruit.jsp">채용정보</a>
+        <a class="nav-link" href="/nullmaster/recruit/boardRecruit.jsp">채용정a보</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/nullmaster/resume/boardResume.jsp">이력서</a>

@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ page import="event.bean.vd.*" %>
 <%@ page import="recruit.bean.vd.*" %>
@@ -14,9 +16,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-   <link href="bootstrap.css" rel="stylesheet" />
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<title>check</title>
+	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+	<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
+	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+<title>NULLMASTERJOB</title>
 
  <%!	int pageSize = 24;	%>	
  
@@ -39,13 +43,17 @@
     if (count >0){
     	recruitList = dao.getRecruits(startRow, endRow);
     }
-    number = count - (currentPage-1)*pageSize;
   %>
   
 <%
-	int index;
 	EventDBBean edao = EventDBBean.getInstance();
 	int ecount = edao.getCount();
+	
+	List EventList = null;
+
+	if(ecount >0){
+		EventList = edao.getEvents();
+	}
 
 %>
 
@@ -85,6 +93,23 @@
         right: 0;
         cursor: pointer;
         z-index: 1;
+      }
+      a:link {
+      	text-decoration: none;
+      	color : black;      	
+      }
+      a:visited {
+      	text-decoration: none;
+      	color : black; 
+      }
+      a:active {
+      	text-decoration: none;
+      	color : black;
+      
+      }
+      a:hover {
+      	text-decoration: none;
+      	color : black;
       }
 </style>
 
@@ -166,34 +191,59 @@
  	<jsp:include page="menu.jsp"/>
 
 <div class="slide">
+
+	<%
+			if (ecount==0){%>
+				<h1>진행중인 이벤트가 없습니다!</h1>
+			<%} else {%>
     	  <img id="back" src="images/back.png" alt="" width="100">
       <ul>
 		<%
-		for (index=1; index <= ecount; index++){ 
-			EventDataBean forvo = edao.getEvent(index);
+		for (int i=0; i < ecount; i++){ 
+			EventDataBean forvo = (EventDataBean)EventList.get(i);
 		%>
 			<li><a href="<%=forvo.getUrl()%>"><img src="images/<%=forvo.getImg()%>" width="2000"  height="500" id="<%=forvo.getCode()%>"></a></li>
 		<%} %>
 		</ul>
 		 <img id="next" src="images/next.png" alt="" width="100">
 	</div>
-
+	<%} %>
 	<div class="container">
 	<h1>새로운 구인글</h1>
-	<h3><small>최신 구인글을 바로 확인하십시오.</small></h3>
+	<h4><small>최신 구인글을 바로 확인하십시오.</small></h4>
 	
 		<div class="row" align="center">
-		<% if(count ==0){ %>
+		<% if(count ==0){ 
+		%>
 		<h1>저장된 글이 없습니다.</h1>
-	<%}  else {
-				
+	<%} else if (count < 4) {
+		
+		for (int i=0; i< count; i++) {
+			RecruitDataBean forvo = (RecruitDataBean)recruitList.get(i);
+			DecimalFormat df = new DecimalFormat("###,###,###,###");
+			String compensation = df.format(forvo.getCompensation());%>
+			<div class="col-md-3">
+			<a href="contentRecruit?recruit_code=<%=forvo.getRecruit_code() %>">
+				<img src="images/<%=forvo.getImg()%>" style="width: 100%; height: 80%"></a>
+				<a class="btn btn-default" href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
+				<h6><%=forvo.getSubject()%></h6>
+				<p><%=compensation%></p>
+				</a>
+			</div>
+	<%	}  
+		}else {
 				for (int i=0; i< 4; i++) {
 					RecruitDataBean forvo = (RecruitDataBean)recruitList.get(i);
+					DecimalFormat df = new DecimalFormat("###,###,###,###");
+					String compensation = df.format(forvo.getCompensation());
 			%>
 			<div class="col-md-3">
-				<img src="images/<%=forvo.getImg()%>" style="width: 100%; height: 80%">
-				<h3><%=forvo.getSubject()%></h3>
-				<p><%=forvo.getCompensation()%>
+				<a href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
+				<img src="images/<%=forvo.getImg()%>" style="width: 100%; height: 80%"></a>
+				<a class="btn btn-default" href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
+				<h6><%=forvo.getSubject()%></h6>
+				<p>보상금: <%=compensation%></p>
+				</a>
 			</div>
 			<%
 				}

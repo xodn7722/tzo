@@ -8,7 +8,14 @@ public class MemberVO {
    private int age;
    private String sex;
    private int mem_level;
+   private int userEmailChecked;
    
+public int getUserEmailChecked() {
+	return userEmailChecked;
+}
+public void setUserEmailChecked(int userEmailChecked) {
+	this.userEmailChecked = userEmailChecked;
+}
 public String getEmail_id() {
 	return email_id;
 }

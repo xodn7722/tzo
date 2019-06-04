@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="menu.jsp"/>
+	<jsp:include page="/menu/menu.jsp"/>
 	<div class="null"></div>
 	<div class="container">
 		<form action="processResumeFileAdd.jsp" method="post" enctype="multipart/form-data">

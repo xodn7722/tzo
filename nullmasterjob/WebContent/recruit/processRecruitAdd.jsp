@@ -23,7 +23,7 @@
 	alert(str);
 	</script>
 <%	String filename = "";
-	String realFolder = request.getRealPath("images//"); //웹 어플리케이션상의 절대 경로
+	String realFolder = request.getRealPath("//resources//images"); //웹 어플리케이션상의 절대 경로
 	String encType = "utf-8"; //인코딩 타입
 	int maxSize = 5 * 1024 * 1024; //최대 업로드될 파일의 크기5Mb
 	
@@ -71,4 +71,6 @@
 	
 	if(pstmt != null) try { pstmt.close(); } catch (Exception e) { e.printStackTrace();}
 	if(conn != null) try { conn.close(); } catch (Exception e) { e.printStackTrace();}
+	
+	response.sendRedirect("../main.jsp");
 %>

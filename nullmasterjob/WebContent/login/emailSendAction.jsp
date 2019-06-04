@@ -81,7 +81,7 @@
 
 	// 사용자에게 보낼 메시지를 기입합니다.
 
-	String host = "http://localhost:80/taewoo/login/";
+	String host = "http://localhost:8080/nullmaster/login/";
 
 	String from = "xodn7722@gmail.com";
 

@@ -113,12 +113,12 @@
 <title><%=vo.getSubject() %></title>
 </head>
 <body>
-<jsp:include page="menu.jsp" />
+<jsp:include page="/menu/menu.jsp" />
 <div class="null"> </div>
 	<div class="container">
 		<div class="row" align="center">
 		<div class="col-md-1">
-		<h1><img src="images/<%=vo.getImg() %>" style="width: 800px; height: 80%"/></h1>
+		<h1><img src="/nullmasterjob/resources/images/<%=vo.getImg() %>" style="width: 800px; height: 80%"/></h1>
 			</div>
 			<div class="col-md-1">
 			<div class="header">
@@ -178,7 +178,7 @@
 			%>
 			<div class="col-md-3">
 			<a href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
-				<img src="images/<%=forvo.getImg()%>" style="width: 100%; height: 80%"> </a>
+				<img src="/nullmasterjob/resources/images/<%=forvo.getImg()%>" style="width: 100%; height: 80%"> </a>
 				<a class="btn btn-default" href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
 				<h6><%=forvo.getSubject()%></h6>
 				<p><%=compensation%></p>

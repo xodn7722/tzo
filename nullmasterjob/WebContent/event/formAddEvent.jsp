@@ -8,7 +8,7 @@
 <title>이벤트 추가하기</title>
 </head>
 <body>
-<%@ include file="menu.jsp"%>
+<%@ include file="/menu/menu.jsp"%>
 	<center>
 	<div class="container" align="center">
 		<div class="col-md-4 col-md-offset-4">

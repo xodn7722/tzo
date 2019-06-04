@@ -142,6 +142,18 @@
 	    msg.setContent(content, "text/html;charset=UTF-8");
 
 	    Transport.send(msg);
+	    
+	    PrintWriter script = response.getWriter();
+
+		script.println("<script>");
+
+		script.println("alert('인증이메일전송완료.');");
+
+		script.println("location.href = 'loginmain.jsp'");
+
+		script.println("</script>");
+
+		script.close();		
 
 	} catch(Exception e){
 

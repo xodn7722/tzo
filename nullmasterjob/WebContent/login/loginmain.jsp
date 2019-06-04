@@ -3,16 +3,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<script type="text/javascript">
+    
+        function changeForm(val){
+            if(val == "-1"){
+                location.href="logout.jsp";
+            }else if(val == "0"){
+                location.href="modify.jsp";
+            }else if(val == "1"){
+                location.href="";
+            }else if(val == "2"){
+                location.href="";
+            }else if(val == "3"){
+                location.href="emailSendAction.jsp";
+            }
+       
+        }
+        
+    </script>
 </head>
 <body>
 <jsp:include page="/menu/menu.jsp"/></div><br/>
-<button onclick="window.location='logout.jsp'"> 로그아웃 </button>
-<button onclick="window.loaction='userinfo'"> 내정보보기 </button>
-<button onclick="window.loaction=''"> 내이력서 </button>
-<button onclick="window.loaction=''"> 내구인글 </button>
-<button onclick="window.location='emailSendAction.jsp'">이메일인증</button>
+<input type="button" value="로그아웃" onclick="changeForm(-1)" />
+<input type="button" value="내정보" onclick="changeForm(0)" />
+<input type="button" value="내이력서" onclick="changeForm(1)" />
+<input type="button" value="내구인글" onclick="changeForm(2)" />
+<input type="button" value="이메일인증" onclick="changeForm(3)" />
 </form>
 </body>
 </html>

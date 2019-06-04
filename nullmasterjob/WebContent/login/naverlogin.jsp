@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -8,24 +9,26 @@
 <script type="text/javascript">
   var naver_id_login = new naver_id_login("HDIpId2jSoQA1sekOyA4", "http://localhost/taewoo/login/naverlogin.jsp");
   // 접근 토큰 값 출력
-  // alert(naver_id_login.oauthParams.access_token);
+  alert(naver_id_login.oauthParams.access_token);
   // 네이버 사용자 프로필 조회
   naver_id_login.get_naver_userprofile("naverSignInCallback()");
   // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-
   function naverSignInCallback() {
-	document.my.email.value=  naver_id_login.getProfileData('email');
- /* alert(naver_id_login.getProfileData('email'));
-    alert(naver_id_login.getProfileData('nickname'));
-    alert(naver_id_login.getProfileData('age'));
-    alert(naver_id_login.getProfileData('id')); 
-    alert(naver_id_login.getProfileData('pw'));  */
-	document.my.submit();
+		document.my.email_id.value =  naver_id_login.getProfileData('email');
+        document.my.name.value = naver_id_login.getProfileData('nickname');
+			document.my.submit();
   }
- 
 </script>
-<form action="/nullmasterjob/login/naverloginPro.jsp" name="my" method="post" >
-	<input type="hidden" name="email" />
-</form>
+<form action="naverloginPro.jsp" name="my" method="post" >
+	<input type="hidden" name="email_id" />
+    <input type="hidden" name="pw" value="1234" />
+    <input type="hidden" name="name" />
+    <input type="hidden" name="tel" value="무" />
+    <input type="hidden" name="age" value="0" />
+    <input type="hidden" name="sex" value="무" />
+    <input type="hidden" name="mem_level" value="1" />
+    <input type="hidden" name="EmailChecked" value="1" />
+</form> 
 </body>
 </html>
+			

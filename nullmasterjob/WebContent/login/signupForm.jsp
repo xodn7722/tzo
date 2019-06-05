@@ -133,7 +133,7 @@ function checkForm(){
         <input type="tel" class="form-control ml-2 mx-2" id="tel" name="tel" placeholder="">
       </div>
       <input type="hidden" name="userEmailChecked" value="0" />
-      <input type="hidden" name="mem_level" value="3" />
+      <input type="hidden" name="mem_level" value="사이트회원" />
       <div align="center">
       <div class="form-group">
       <input type="submit" class="btn btn-primary" value="회원가입">

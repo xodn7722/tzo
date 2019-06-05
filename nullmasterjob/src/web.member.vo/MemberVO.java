@@ -7,9 +7,17 @@ public class MemberVO {
    private String pw;
    private int age;
    private String sex;
-   private int mem_level;
+   private String mem_level;
    private int userEmailChecked;
    
+   
+   
+public String getMem_level() {
+	return mem_level;
+}
+public void setMem_level(String mem_level) {
+	this.mem_level = mem_level;
+}
 public int getUserEmailChecked() {
 	return userEmailChecked;
 }
@@ -52,12 +60,7 @@ public String getSex() {
 public void setSex(String sex) {
 	this.sex = sex;
 }
-public int getMem_level() {
-	return mem_level;
-}
-public void setMem_level(int mem_level) {
-	this.mem_level = mem_level;
-}
+
   
   
 }

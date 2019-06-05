@@ -10,6 +10,7 @@
 
   MemberDAO dao = MemberDAO.getInstance();
   MemberVO vo = dao.getMember(id);
+  
 %>
 <script language="javascript">
 function checkForm(){
@@ -44,16 +45,16 @@ function checkForm(){
      <h1>회원정보</h1>
      <form action="modifyPro.jsp" method="post" onsubmit="return checkForm();" >
         <div class="col-sm-4">
-         <div class="form-group row">
+        <div class="form-group row">
           <label class="col-sm-1 col-form-label"> Email </label>
-          <input class="form-control ml-2 mx-2" type="text" name="" value="<%=vo.getEmail_id() %>" />
+          <input class="form-control ml-2 mx-2" type="text" name="email_id" value="<%=vo.getEmail_id()%>" disabled/>
         </div>
         <div class="mb-2 my-2">
         <small id="emailHelp" class="form-text text-muted">Email은수정이불가능합니다</small>
       </div>
         <div class="form-group row">
           <label class="col-sm-1 col-form-label"> Password </label>
-          <input class="form-control ml-2 mx-2" type="password" name="pw" />
+          <input class="form-control ml-2 mx-2" type="password" name="pw" value="<%=vo.getPw()%>" />
         </div>
         <div class="form-group row">
           <label class="col-sm-1 col-form-label"> Name </label>
@@ -61,8 +62,8 @@ function checkForm(){
         </div>
       <div class="form-group row">
         <label class="col-sm-1 col-form-label">SEX</label>
-         <select class="custom-select col-sm-4" name="sex" value="<%=vo.getSex()%>">
-           <option></option>
+         <select class="custom-select col-sm-4" name="sex" >
+           <option><%=vo.getSex()%></option>
            <option>남자</option>
            <option>여자</option>
          </select>
@@ -74,6 +75,19 @@ function checkForm(){
         <div class="form-group row">
           <label class="col-sm-1 col-form-label"> Tel </label>
           <input class="form-control ml-2 mx-2" type="text" name="tel" value="<%=vo.getTel()%>"/>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label"> 회원정보 </label>
+          <input class="form-control ml-2 mx-2" type="text" name="mem_level" value="<%=vo.getMem_level()%>" disabled/>
+        </div>
+        <div class="form-group row">
+        <%String m = null;
+          String r = "인증";
+          String ro = "미인증";
+          if(vo.getUserEmailChecked() == 1){ m = r; }else{ m = ro;}
+        %>
+          <label class="col-sm-3 col-form-label"> 인증정보 </label>
+          <input class="form-control ml-2 mx-2" type="text" name="userEmailChecked" value="<%=m%>" disabled/>
         </div>
          </div>
           <div align="center">

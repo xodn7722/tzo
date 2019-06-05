@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -12,32 +11,33 @@
 <jsp:setProperty property="*" name="vo" />
 
 <%
-String email_id = request.getParameter("email");
-String name = request.getParameter("name");
+String email_id = request.getParameter("email_id");
 String pw = request.getParameter("pw");
+String name = request.getParameter("name");
 String tel = request.getParameter("tel");
-String age = request.getParameter("age");
+int age = Integer.parseInt(request.getParameter("age"));
 String sex = request.getParameter("sex");
 String mem_level = request.getParameter("mem_level");
-String EmailChecked = request.getParameter("EmailChecked");
+int userEmailChecked = Integer.parseInt(request.getParameter("userEmailChecked"));
 
-   MemberDAO dao = MemberDAO.getInstance();
-   int check = dao.confirmId(email_id);
+MemberDAO dao = MemberDAO.getInstance();
 
-   if( check == 1){
-	   String id = email_id;
-	   session.setAttribute("loginID", id);
-       response.sendRedirect("loginmain.jsp");
-   }
-   
-   else{
+int check = dao.confirmId(email_id);
+
+if( check == 1){
+	  
+	   session.setAttribute("loginID", email_id);
+    response.sendRedirect("loginmain.jsp");
+}
+
+else{
 	   
-	       
-	       dao.insertMember(vo); 
-	       String id = email_id;
-   	       session.setAttribute("loginID", id);
-           response.sendRedirect("loginmain.jsp");
+	      
+	       dao.insertMember(vo);      
+	       session.setAttribute("loginID", email_id);
+        response.sendRedirect("loginmain.jsp");
 		
-  }%>  
-   
+}%>  
+
+  
       

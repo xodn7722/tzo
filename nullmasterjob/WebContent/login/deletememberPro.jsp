@@ -30,7 +30,7 @@
 			
 		</div>
 		<div class="col-md-4">
-		<form method="post" action="loginmain.jsp" name="userinput" >
+		<form method="post" action="/taewoo/main.jsp" name="userinput" >
 <table>
   <tr > 
     <td>

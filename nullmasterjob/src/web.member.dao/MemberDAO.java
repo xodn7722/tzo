@@ -72,7 +72,7 @@ public class MemberDAO {
     		pstmt.setString(4, vo.getTel());
     		pstmt.setInt(5, vo.getAge());
     		pstmt.setString(6, vo.getSex());
-    		pstmt.setInt(7, vo.getMem_level());
+    		pstmt.setString(7, vo.getMem_level());
     		pstmt.setInt(8, vo.getUserEmailChecked());
     		pstmt.executeUpdate();
     		
@@ -100,7 +100,8 @@ public class MemberDAO {
 				vo.setTel(rs.getString("tel"));
 				vo.setAge(rs.getInt("age"));
 				vo.setSex(rs.getString("sex"));
-				vo.setMem_level(rs.getInt("mem_level"));
+				vo.setMem_level(rs.getString("mem_level"));
+				vo.setUserEmailChecked(rs.getInt("userEmailChecked"));
 				list.add(vo);
 			}
 			
@@ -157,7 +158,8 @@ public class MemberDAO {
 					vo.setTel(rs.getString("tel"));
 					vo.setAge(rs.getInt("age"));
 					vo.setSex(rs.getString("sex"));
-					vo.setMem_level(rs.getInt("mem_level"));
+					vo.setMem_level(rs.getString("mem_level"));
+					vo.setUserEmailChecked(rs.getInt("userEmailChecked"));
 	    		
 	    		
 	    	}catch(Exception e) {
@@ -180,15 +182,18 @@ public class MemberDAO {
 	    	try {
 	            conn = getConnection();
 	            pstmt = conn.prepareStatement(
-	            "update member set email_id=?,pw=?,name=?,tel=?,age=?,sex=?,mem_level=?"+
+	            "update member set pw=?,name=?,tel=?,age=?,sex=?,mem_level=?,userEmailChecked=?"+
 	            "where email_id=?");
-	            pstmt.setString(1, vo.getEmail_id());
-	    		pstmt.setString(2, vo.getPw());
-	    		pstmt.setString(3, vo.getName());
-	    		pstmt.setString(4, vo.getTel());
-	    		pstmt.setInt(5, vo.getAge());
-	    		pstmt.setString(6, vo.getSex());
-	    		pstmt.setInt(7, vo.getMem_level());
+	           
+	    		pstmt.setString(1, vo.getPw());
+	    		pstmt.setString(2, vo.getName());
+	    		pstmt.setString(3, vo.getTel());
+	    		pstmt.setInt(4, vo.getAge());
+	    		pstmt.setString(5, vo.getSex());
+	    		pstmt.setString(6, vo.getMem_level());
+	    		pstmt.setInt(7, vo.getUserEmailChecked());
+	    		pstmt.setString(8, vo.getEmail_id());
+	    		
 	    	    
 	    	    pstmt.executeUpdate();
 	    	}catch(Exception ex){

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="web.member.dao.*" %>
+<%@ page import="web.member.vo.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,14 +27,30 @@ function jusoCallBack(roadFullAddr){
 }
 
 </script>
-<title>Insert title here</title>
+
+<%
+	request.setCharacterEncoding("UTF-8");
+	
+%>
+<title>구인 등록</title>
 </head>
 <body>
+
+	<% if(session.getAttribute("loginID")== null){%>
+	<script>
+		alert("권한이 없습니다.")
+	</script>
+	<%} else {
+	String id = (String)session.getAttribute("loginID");
+	MemberDAO dao = MemberDAO.getInstance();
+	MemberVO vo = dao.getMember(id);
+%>
+ 	<jsp:include page="/menu/menu.jsp"/>
 	<center>
 	<div class="container" align="center">
 		<div class="col-md-4 col-md-offset-4">
 			<h3 class="form-signin-heading">구인 등록</h3>
-			<form class="form-signin" name=form id=form action="processRecruitAdd.jsp" method="post" enctype="multipart/form-data">
+			<form class="form-signin" name=form id=form action="processInsert.jsp" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="inputEventUrl" class="sr-only">제목</label>
 					<input type="text" class="form-control" placeholder="제목" name="subject" required autofocus>
@@ -79,16 +97,17 @@ function jusoCallBack(roadFullAddr){
 				
 				<div class="form-group">
 					<label for="inputPassword" class="sr-only">Email</label> 
-					<input	type="email" class="form-control" placeholder="Email" name="email_id" required>
+					<input	type="email" class="form-control" value="<%=vo.getEmail_id() %>" name="email_id" readonly>
 				</div>
 				
 				  <div class="form-group">
-   					 <input type="file" name="img">
+   					 <input type="file"  name="img" required>
    					 <p class="help-block">회사관련 이미지를 업로드하십시오.</p>
   					</div>
 				<button class="btn btn btn-lg btn-success btn-block" type="submit">업로드</button>
 			</form>
 		</div>
 	</div>
+	<%} %>
 </body>
 </html>

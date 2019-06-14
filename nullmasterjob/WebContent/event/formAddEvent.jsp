@@ -15,10 +15,6 @@
 			<h3 class="form-signin-heading">이벤트 등록</h3>
 			<form class="form-signin" action="processEventAdd.jsp" method="post" enctype="multipart/form-data">
 				<div class="form-group">
-					<label for="inputEventUrl" class="sr-only">Event Url</label>
-					<input type="text" class="form-control" placeholder="http://주소" name='url' required autofocus>
-				</div>
-				<div class="form-group">
 					<label for="inputEmail" class="sr-only">Email</label> 
 					<input	type="email" class="form-control" placeholder="Email" name='email' required>
 				</div>

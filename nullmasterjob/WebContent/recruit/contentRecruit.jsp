@@ -5,9 +5,7 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@ page import="recruit.bean.vd.*" %>
 <% request.setCharacterEncoding("UTF-8"); %>
-<jsp:useBean id="recruit"  class="recruit.bean.vd.RecruitDataBean">
-	<jsp:setProperty name="recruit" property="*"/>
-</jsp:useBean>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,17 +66,9 @@
   width: 200px;
 	}
   </style>
-  <script type="text/javascript">
-  $(document).ready(function() {
-      $('.wrap').on( 'keyup', 'textarea', function (e){
-        $(this).css('height', 'auto' );
-        $(this).height( this.scrollHeight );
-      });
-      $('.wrap').find( 'textarea' ).keyup();
-    });
-  </script>
 <%
 	String str = request.getParameter("recruit_code");
+	
 	int index = Integer.parseInt(str);
 	RecruitDBBean dao = RecruitDBBean.getInstance();
 	RecruitDataBean vo = dao.getRecruit(index);
@@ -110,6 +100,33 @@
 	}
 	
 %>
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('.wrap').on( 'keyup', 'textarea', function (e){
+        $(this).css('height', 'auto' );
+        $(this).height( this.scrollHeight );
+      });
+      $('.wrap').find( 'textarea' ).keyup();
+    });
+  
+  function del(){
+	  var result = confirm("정말로 삭제하시겠습니까?");
+	  if(result){
+		  alert("삭제되었습니다.");
+		  window.location.href = "processDelete.jsp?code=<%=vo.getRecruit_code() %>";
+	  }
+  }
+  function up(){
+	  window.location.href = "formUpdateRecruit.jsp?code=<%=vo.getRecruit_code()%>";
+  }
+  function applicant(){
+	  var pop = window.open("../applicant/formApplicant.jsp?code=<%=vo.getRecruit_code()%>","pop","width=550,height=400, scrollbars=yes, resizable=yes"); 
+  }
+  function nominator(){
+	  var pop = window.open("../nominator/formNominator.jsp","pop","width=570,height=600, scrollbars=yes, resizable=yes"); 
+  }
+  </script>
 <title><%=vo.getSubject() %></title>
 </head>
 <body>
@@ -118,9 +135,9 @@
 	<div class="container">
 		<div class="row" align="center">
 		<div class="col-md-1">
-		<h1><img src="/nullmasterjob/resources/images/<%=vo.getImg() %>" style="width: 800px; height: 80%"/></h1>
+		<h1><img src="/ProjectTest/resources/recruit/<%=vo.getImg() %>" style="width: 800px; height: 80%"/></h1>
 			</div>
-			<div class="col-md-1">
+			<div class="col-md-2">
 			<div class="header">
 				<div class="border">
 				<div class="null"> </div>
@@ -136,7 +153,27 @@
 				<p><%=applicant %>원
 				</div>
 				</div>
-				<button  class="btn btn-primary">지원하기</button>
+				
+				
+				<%	if(session.getAttribute("loginID") != null){
+				if( session.getAttribute("loginID").equals(vo.getEmail_id())) {%>
+				<br/>
+				<div class="row">
+				<div class="col-md-12">
+				<button  class="btn btn-info" onclick="up()">수정</button>
+				<button  class="btn btn-primary" onclick="return del()">삭제</button>
+				</div>
+				</div>
+				<%} else {%>
+				<br/>
+				<div class="row">
+				<div class="col-md-12">
+				<button  class="btn btn-danger" onclick="nominator()">추천 </button>
+				<button  class="btn btn-primary" onclick="applicant()">지원 </button>
+				</div>
+				</div>
+				<%} 
+				}%>
 				</div>
 				</div>
 			</div>
@@ -145,7 +182,7 @@
 			<div class="text-left">
 				<h3><%=vo.getSubject() %></h3>
 				 <div class="wrap">
-				<textarea class="autosize"  disabled ><%=vo.getContent() %></textarea>
+				<textarea  disabled ><%=vo.getContent() %></textarea>
 				</div>
 			</div>
 			</div>
@@ -178,7 +215,7 @@
 			%>
 			<div class="col-md-3">
 			<a href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
-				<img src="/nullmasterjob/resources/images/<%=forvo.getImg()%>" style="width: 100%; height: 80%"> </a>
+				<img src="/ProjectTest/resources/images/<%=forvo.getImg()%>" style="width: 100%; height: 80%"> </a>
 				<a class="btn btn-default" href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
 				<h6><%=forvo.getSubject()%></h6>
 				<p><%=compensation%></p>
@@ -188,7 +225,7 @@
 		} %>
 			</div>
 		</div>	
-				</div>
+				</div>				
 			</div>
 	</body>
 </html>

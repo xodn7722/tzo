@@ -1,4 +1,3 @@
-
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="recruit.bean.vd.*" %>
@@ -63,13 +62,11 @@
 					String compensation = df.format(vo.getCompensation());
 			%>
 			<div class="col-md-3">
-				<a href="contentRecruit.jsp?recruit_code=<%=vo.getRecruit_code()%>"><img src="/nullmasterjob/resources/images/<%=vo.getImg()%>" style="width: 100%; height: 70%"></a>
-				<div>
+				<a href="contentRecruit.jsp?recruit_code=<%=vo.getRecruit_code()%>"><img src="/ProjectTest/resources/recruit/<%=vo.getImg()%>" style="width: 100%; height: 70%"></a>
 				<a class="btn btn-default" href="contentRecruit.jsp?recruit_code=<%=vo.getRecruit_code() %>">
 				<h6><%=vo.getSubject()%></h6>
 				<p>보상금: <%=compensation%></p> 
 				</a>
-				</div>
 			</div>
 			<%
 				}

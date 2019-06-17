@@ -4,7 +4,7 @@ public class ResumeVO {
 private int resume_code; //사람이많아진다면 이력서 이름제목이 겹칠수가있다.
 private String tel;
 private String email_id;
-private String carrer;
+private String career;
 private String academic;
 private String intro;
 private String resume_title;
@@ -35,11 +35,11 @@ public String getEmail_id() {
 public void setEmail_id(String email_id) {
 	this.email_id = email_id;
 }
-public String getCarrer() {
-	return carrer;
+public String getCareer() {
+	return career;
 }
-public void setCarrer(String carrer) {
-	this.carrer = carrer;
+public void setCareer(String career) {
+	this.career = career;
 }
 public String getAcademic() {
 	return academic;

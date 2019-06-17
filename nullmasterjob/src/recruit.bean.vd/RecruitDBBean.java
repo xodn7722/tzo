@@ -1,6 +1,7 @@
 package recruit.bean.vd;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,7 +44,7 @@ private static RecruitDBBean instance = new RecruitDBBean();
 		
 		try {
 			conn=getConnection();
-			sql = "select max(recruit_code) from recruit";
+			sql = "select count(*) from recruit";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -55,6 +56,54 @@ private static RecruitDBBean instance = new RecruitDBBean();
 	            if(conn != null) {try {conn.close();}catch(SQLException s) {}}
 		}
 		return count;
+	}
+	
+	public int getCountCompany(String email_id) {
+		int count =0;
+		
+		try {
+			conn=getConnection();
+			sql = "select count(*) from recruit where email_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch(Exception e){ e.printStackTrace();}
+		finally {
+			  if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
+	            if(conn != null) {try {conn.close();}catch(SQLException s) {}}
+		}
+		return count;
+	}
+	
+	public void insertRecruit(String subject,String content,String group1,String group2,
+			String img, String address, int compensation,String email_id,
+			int nominator,int applicant, Date end_date) 
+	{
+		try {
+			conn = getConnection();
+			sql = "insert into recruit values(recruit_seq.NEXTVAL,sysdate,?,?,?,?,?,?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDate(1, end_date);
+			pstmt.setString(2, subject);
+			pstmt.setString(3, content);
+			pstmt.setString(4, group1);
+			pstmt.setString(5, group2);
+			pstmt.setString(6, img);
+			pstmt.setString(7, address);
+			pstmt.setInt(8, compensation);
+			pstmt.setString(9, email_id);
+			pstmt.setInt(10, nominator);
+			pstmt.setInt(11, applicant);
+			pstmt.executeUpdate();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			 if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
+	         if(conn != null) {try {conn.close();}catch(SQLException s) {}}
+		}
 	}
 	public RecruitDataBean getRecruit(int index) {
 			RecruitDataBean vo = null;
@@ -128,6 +177,42 @@ private static RecruitDBBean instance = new RecruitDBBean();
 		}
 		return recruitList;
 	}
+	
+	public List getRecruitsCompany(String email_id) throws Exception {
+		List recruitList = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(
+					"select * from (select * from (select * from recruit order by recruit_code desc) order by recruit_code desc) where sysdate < end_date and email_id=?");
+			pstmt.setString(1, email_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				recruitList = new ArrayList();
+			do {
+				RecruitDataBean recruit = new RecruitDataBean();
+				recruit.setEmail_id(rs.getString("email_id"));
+				recruit.setSubject(rs.getString("subject"));
+				recruit.setGroup1(rs.getString("group1"));
+				recruit.setGroup2(rs.getString("group2"));
+				recruit.setImg(rs.getString("img"));
+				recruit.setAddress(rs.getString("address"));
+				recruit.setRecruit_code(rs.getInt("recruit_code"));
+				recruit.setCompensation(rs.getInt("compensation"));
+				recruit.setContent(rs.getString("content"));
+				recruit.setEnd_date(rs.getDate("end_date"));
+				recruitList.add(recruit);
+			} while(rs.next()); 
+		}
+	} catch(Exception e){
+		e.printStackTrace();
+		} finally {
+			if (pstmt!=null) try {	pstmt.close();	} catch (SQLException e) {}
+			if (conn!=null) try {	conn.close();	} catch (SQLException e) {}
+		}
+		return recruitList;
+	}
+	
 	public List getExtraction(String group1,int index) {
 		List recruitList = null;
 		try {
@@ -189,6 +274,42 @@ private static RecruitDBBean instance = new RecruitDBBean();
 	         if(conn != null) {try {conn.close();}catch(SQLException s) {}}
 		}
 		return count;
+	}
+	public void deleteRecruit(int index) {
+		try {
+			conn = getConnection();
+			sql = "delete from recruit where recruit_code=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, index);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+	}
+	
+	public void updateRecruit(RecruitDataBean recruit,Date end_date) {
+		try {
+			conn = getConnection();
+			sql = "update recruit set subject=?, content=?, group1=?, group2=?, end_date=?"
+					+ " where recruit_code=?";
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, recruit.getSubject());
+			pstmt.setString(2, recruit.getContent());
+			pstmt.setString(3, recruit.getGroup1());
+			pstmt.setString(4, recruit.getGroup2());
+			pstmt.setDate(5,end_date);
+			pstmt.setInt(6, recruit.getRecruit_code());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(pstmt != null) { try {pstmt.close();} catch(SQLException s) {}}
+			if(conn != null) { try {conn.close();} catch(SQLException s) {}}
+		}
 	}
 }
 

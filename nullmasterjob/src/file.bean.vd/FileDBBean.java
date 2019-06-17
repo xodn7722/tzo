@@ -1,0 +1,94 @@
+package file.bean.vd;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+
+public class FileDBBean {
+private static FileDBBean instance = new FileDBBean();
+	
+	public static FileDBBean getInstance() {
+		return instance;
+	}
+	private FileDBBean() {}
+	
+	private Connection conn = null;
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null;
+	private String sql;
+	
+	public Connection getConnection() throws Exception {
+		try {
+		Context ctx = new InitialContext();
+		Context env = (Context)ctx.lookup("java:comp/env");
+		DataSource ds = (DataSource)env.lookup("jdbc/xe");
+		conn = ds.getConnection();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} 
+		return conn;
+	}
+	
+	public int getFileCount(String email_id) {
+		int count =0;
+		try {
+			conn = getConnection();
+			sql = "select count(code) from resumefile where email_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			 if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
+	         if(conn != null) {try {conn.close();}catch(SQLException s) {}}
+		}
+		
+		return count;
+	}
+	
+	public List getFiles(String email_id) {
+		List FileList = null;
+		
+		try {
+			conn = getConnection();
+			sql = "select *from (select * from resumefile order by code desc)"
+					+ " where email_id=? and rownum<11  ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email_id);
+			rs= pstmt.executeQuery();
+			if(rs.next()) {
+				FileList = new ArrayList();
+				do {
+					FileDataBean resume = new FileDataBean();
+					resume.setCode(rs.getInt("code"));
+					resume.setEmail_id(rs.getString("email_id"));
+					resume.setName(rs.getString("name"));
+					FileList.add(resume);
+				} while(rs.next());
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt!=null) try {	pstmt.close();	} catch (SQLException e) {}
+			if (conn!=null) try {	conn.close();	} catch (SQLException e) {}
+		}
+		return FileList;
+	}
+}

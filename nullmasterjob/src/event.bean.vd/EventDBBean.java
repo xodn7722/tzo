@@ -1,12 +1,12 @@
 package event.bean.vd;
 import java.sql.*;
+import java.sql.Date;
+
 import javax.sql.*;
 
 
 import javax.naming.*;
 import java.util.*;
-import java.util.Date; 
-
 public class EventDBBean {
 	private static EventDBBean instance = new EventDBBean();
 	
@@ -33,15 +33,15 @@ public class EventDBBean {
 		return conn;
 	}
 	
-	public void insertEvent(EventDataBean event) throws Exception {
+	public void insertEvent(String img, Date end_date, String email) throws Exception {
 		
 		try {
 			conn = getConnection();
-			sql = "insert into event(code,url,img,email,end_date) values (event_seq.NEXTVAL,?,?,?,sysdate)";
+			sql = "insert into event values (event_seq.NEXTVAL,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, event.getUrl());
-			pstmt.setString(2, event.getImg());
-			pstmt.setString(3, event.getEmail());
+			pstmt.setString(1,img);
+			pstmt.setString(2, email);
+			pstmt.setDate(3, end_date);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -67,10 +67,9 @@ public class EventDBBean {
 			do {
 				EventDataBean event = new EventDataBean();
 				event.setCode(rs.getInt("code"));
-				event.setEmail(rs.getString("email"));
-				event.setEnd_date(rs.getTimestamp("end_date"));
+				event.setEmail_id(rs.getString("email_id"));
+				event.setEnd_date(rs.getDate("end_date"));
 				event.setImg(rs.getString("img"));
-				event.setUrl(rs.getString("url"));
 				eventList.add(event);
 			} while(rs.next());
 		}catch (Exception e) {

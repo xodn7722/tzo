@@ -1,16 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ page import="event.bean.vd.*" %>
 <%@ page import="recruit.bean.vd.*" %>
 <%@page import="java.util.List"%>
 <% request.setCharacterEncoding("UTF-8"); %>
-<jsp:useBean id="event"  class="event.bean.vd.EventDataBean">
-	<jsp:setProperty name="event" property="*"/>
-</jsp:useBean>
-<jsp:useBean id="recruit"  class="recruit.bean.vd.RecruitDataBean">
-	<jsp:setProperty name="recruit" property="*"/>
-</jsp:useBean>
 <!DOCTYPE html>
 
 <html>
@@ -196,16 +190,16 @@
 			if (ecount==0){%>
 				<h1>진행중인 이벤트가 없습니다!</h1>
 			<%} else {%>
-    	  <img id="back" src="/nullmasterjob/resources/images/back.png" alt="" width="100">
+    	  <img id="back" src="/ProjectTest/resources/event/back.png" alt="" width="100">
       <ul>
 		<%
 		for (int i=0; i < ecount; i++){ 
 			EventDataBean forvo = (EventDataBean)EventList.get(i);
 		%>
-			<li><a href="<%=forvo.getUrl()%>"><img src="/nullmasterjob/resources/images/<%=forvo.getImg()%>" width="2000"  height="500" id="<%=forvo.getCode()%>"></a></li>
+			<li><a href="company/contentCompany.jsp?email_id=<%=forvo.getEmail_id()%>"><img src="/ProjectTest/resources/event/<%=forvo.getImg()%>" width="2000"  height="500" ></a></li>
 		<%} %>
 		</ul>
-		 <img id="next" src="/nullmasterjob/resources/images/next.png" alt="" width="100">
+		 <img id="next" src="/ProjectTest/resources/event/next.png" alt="" width="100">
 	</div>
 	<%} %>
 	<div class="container">
@@ -222,9 +216,9 @@
 			RecruitDataBean forvo = (RecruitDataBean)recruitList.get(i);
 			DecimalFormat df = new DecimalFormat("###,###,###,###");
 			String compensation = df.format(forvo.getCompensation());%>
-			<div class="col-md-3">
+			<div class="col-md-3">S
 			<a href="contentRecruit?recruit_code=<%=forvo.getRecruit_code() %>">
-				<img src="/nullmasterjob/resources/images/<%=forvo.getImg()%>" style="width: 100%; height: 80%"></a>
+				<img src="/ProjectTest/resources/recruit/<%=forvo.getImg()%>" style="width: 100%; height: 80%"></a>
 				<a class="btn btn-default" href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
 				<h6><%=forvo.getSubject()%></h6>
 				<p><%=compensation%></p>
@@ -238,9 +232,9 @@
 					String compensation = df.format(forvo.getCompensation());
 			%>
 			<div class="col-md-3">
-				<a href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
-				<img src="/nullmasterjob/resources/images/<%=forvo.getImg()%>" style="width: 100%; height: 80%"></a>
-				<a class="btn btn-default" href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
+				<a href="recruit/contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
+				<img src="/ProjectTest/resources/recruit/<%=forvo.getImg()%>" style="width: 100%; height: 80%"></a>
+				<a class="btn btn-default" href="recruit/contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
 				<h6><%=forvo.getSubject()%></h6>
 				<p>보상금: <%=compensation%></p>
 				</a>

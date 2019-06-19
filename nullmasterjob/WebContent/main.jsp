@@ -216,7 +216,7 @@
 			RecruitDataBean forvo = (RecruitDataBean)recruitList.get(i);
 			DecimalFormat df = new DecimalFormat("###,###,###,###");
 			String compensation = df.format(forvo.getCompensation());%>
-			<div class="col-md-3">S
+			<div class="col-md-3">
 			<a href="contentRecruit?recruit_code=<%=forvo.getRecruit_code() %>">
 				<img src="/ProjectTest/resources/recruit/<%=forvo.getImg()%>" style="width: 100%; height: 80%"></a>
 				<a class="btn btn-default" href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">

@@ -329,5 +329,27 @@ public class MemberDAO {
 			return 0; // 이메일 등록 설정 실패
 
 		}
-	   
+		
+		public void admindeleteMember(String id) //회원정보삭제
+        {
+
+	        try {
+				conn = getConnection();
+
+	            pstmt = conn.prepareStatement(
+	            	"delete from member where email_id = ?");
+	            pstmt.setString(1, id);
+	            rs = pstmt.executeQuery();
+	            
+				
+	        } catch(Exception ex) {
+	            ex.printStackTrace();
+	        } finally {
+	            if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+	            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	        }
+			
+	    }
+
 }

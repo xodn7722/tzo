@@ -1,7 +1,6 @@
 package company.bean.vd;
 
 import java.sql.*;
-import java.sql.Date;
 
 import javax.sql.*;
 
@@ -204,5 +203,39 @@ public class CompanyDBBean {
 			if(pstmt != null) try { pstmt.close(); } catch (Exception e) { e.printStackTrace();}
 			if(conn != null) try { conn.close(); } catch (Exception e) { e.printStackTrace();}	
 		}
+	}
+	
+	public ArrayList<CompanyDataBean> getAllCompany(){ //회원가입정보리스트에추가
+		ArrayList<CompanyDataBean> list = null;
+		try {
+			conn = getConnection();
+			String sql = "select * from company";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<CompanyDataBean>();
+			while(rs.next()){
+				CompanyDataBean DataBean = new CompanyDataBean();
+				DataBean.setCompany_code(rs.getInt("company_code"));
+				DataBean.setName(rs.getString("name"));
+				DataBean.setHomepage(rs.getString("homepage"));
+				DataBean.setAddress(rs.getString("address"));
+				DataBean.setFound_date(rs.getDate("found_date"));
+				DataBean.setEmployee(rs.getInt("employee"));
+				DataBean.setIntro(rs.getString("intro"));
+				DataBean.setEmail_id(rs.getString("email_id"));
+				DataBean.setLogo(rs.getString("logo"));
+				DataBean.setImg(rs.getString("img"));			
+				list.add(DataBean);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {try {rs.close();}catch(SQLException s) {}}
+    		if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
+    		if(conn != null) {try {conn.close();}catch(SQLException s) {}}
+		}
+		return list;
+		
 	}
 }

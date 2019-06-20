@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import = "board.bean.vd.BoardDBBean" %>
+<%@ page import = "board.bean.BoardDBBean" %>
 <%@ page import = "java.sql.Timestamp" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
 
-<jsp:useBean id="article" scope="page" class="board.bean.vd.BoardDataBean">
+<jsp:useBean id="article" scope="page" class="board.bean.BoardDataBean">
    <jsp:setProperty name="article" property="*"/>
 </jsp:useBean>
 <%

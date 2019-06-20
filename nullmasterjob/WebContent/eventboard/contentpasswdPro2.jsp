@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=euc-kr" %>
-<%@ page import = "board.bean.vd.BoardDBBean" %>
-<%@ page import = "board.bean.vd.BoardDataBean" %>
+<%@ page import = "board.bean.BoardDBBean" %>
+<%@ page import = "board.bean.BoardDataBean" %>
 <%@ page import = "java.sql.Timestamp" %>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <html>

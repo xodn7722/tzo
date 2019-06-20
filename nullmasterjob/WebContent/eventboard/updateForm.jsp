@@ -1,6 +1,6 @@
 <%@ page contentType = "text/html; charset=UTF-8" %>
-<%@ page import = "board.bean.vd.BoardDBBean" %>
-<%@ page import = "board.bean.vd.BoardDataBean" %>
+<%@ page import = "board.bean.BoardDBBean" %>
+<%@ page import = "board.bean.BoardDataBean" %>
 
 <!DOCTYPE html>
 <html>

@@ -1,25 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import = "web.member.dao.MemberDAO" %>
+<%@ page import = "web.member.vo.MemberVO" %>
 <% request.setCharacterEncoding("UTF-8");%>
-
 <html>
 <head>
-<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
-<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
-<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
 
 </head>
-<jsp:useBean id="member" class="web.member.vo.MemberVO">
-    <jsp:setProperty name="member" property="*" />
+<jsp:useBean id="vo" class="web.member.vo.MemberVO">
+    <jsp:setProperty name="vo" property="*" />
 </jsp:useBean>
-<%
-    String id = (String)session.getAttribute("loginID");
-	member.setEmail_id(id);
-
+<% 
+    String id = request.getParameter("email_id");
+    vo.setEmail_id(id);
 	MemberDAO dao = MemberDAO.getInstance();
-    dao.updateMember(member);
- %>
+    dao.updateMember(vo);
+%>
 <body>
 	<jsp:include page="/menu/menu.jsp" />
 	<div class="jumbotron">
@@ -46,9 +41,9 @@
   <tr>
     <td bgcolor="#EAEAEA" align="center"> 
       <form>
-	    <input type="button" value="메인으로" onclick="window.location='loginmain.jsp'">
+	    <input type="button" value="메인으로" onclick="window.location='admin_member_list.jsp'">
       </form>
-      5초후에 메인으로 이동합니다.<meta http-equiv="Refresh" content="5;url=loginmain.jsp" >
+      5초후에 메인으로 이동합니다.<meta http-equiv="Refresh" content="5;url=admin_member_list.jsp" >
     </td>
   </tr>
 </table>
@@ -56,4 +51,4 @@
 		<hr>
 	</div>
 
-</body>
+</body>>

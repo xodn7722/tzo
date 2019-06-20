@@ -9,16 +9,19 @@
 <!DOCTYPE html>
 <%
 	SearchDAO serch = SearchDAO.getInstance();
-
-	
 %>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>	
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="table style.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script type= "text/css" src="https://cdnjs.cloudflare.com/ajax/libs/tinyscrollbar/2.4.2/jquery.tinyscrollbar.js"></script>
+<script type="text/javascript" src="jquery.tinyscrollbar.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -29,21 +32,15 @@
 	  $("#job_select").click(function(){
 		    $("#job_catagory_on").toggle(), $("#area_select_on").hide();
 		  });
+	  $("#Search_P input[type='hidden']").each(function(i,item){
 
-	 <%--("#area_search").autocomplete({
-			source:".jsp"
-			minLength:2,
-			response: function(event,ui){
-				console.log(ui);
-			},
-			select:function(event,ui){
-				console.log("Selected:" + ui.item.value);
-			},
-			focus: function(event,ui){
-				return false;
-			}
-			
-			});--%>
+		    if(item.value != ""){
+
+		        console.log(item.value)
+
+		    }
+
+		}); 
 });
 	</script>
 	<script>
@@ -59,41 +56,29 @@
 	function test1(data){	$("#area2").html(data);		}
 	
 	function get_job(jsno) {
-		$.ajax({
+			 $.ajax({
 			type :"post",
 			url : "job2.jsp",
 			data : { jsno : jsno }, 
 			success : test2
 		});
+			
+	function test2(data){	$("#job1").html(data);	}
 	}
-	function test2(data){	$("#job1").html(data);	
-			$(".xs").click(function(){
-				var result = [];
-				$("input[name=loc_cd]:checked").each(function(){
-					if(result == ""){
-						result = $(this).val();
-					} else {
-						result = result + "," + $(this).val();
-					}
-				});
-				$('#sp_preview_selected').val(result);
-			});
-	}
-			</script>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+	
+	function goSubmit() {
+		$("#get_area_form").submit;	}
+	</script>
+
+
+
 <body>
-    <form id='get_area_form' name="search_panel_form" action="xx.jsp" method="post">
+    <form id='get_area_form' name="search_panel_form" action="Result.jsp" method="post" onSubmit="goSubmit()">
         <fieldset>
             <div class="wrap_main_panel">
                 <div class="default_option">
     <!-- btn_open_layer 클릭 시 부모 search_option 에 open 클래스 추가 -->
 <div class="search_option recently_search_option" >
-    <button type="button" class="btn_open_layer track_event" title="나의 검색 설정이 가능합니다.">
-        나의 검색 / 메일관리<i class="ico_word_setting">설정</i>
-    </button>
     <div class="layer_option">
         <div class="wrap_scroll_layer">
             <div class="layer_inner">
@@ -208,7 +193,7 @@
 <div class="wrap_depth_category">
     <h4 class="blind">카테고리 선택</h4>
     <div class="wrap_scroll depth1" style="height: 245px;">
-        <div class="scrollbar" style="height: 245px;"><div class="track" style="height: 245px;"><div class="thumb" style="top: 4.7025px; height: 115.211px;"><div class="end"></div></div></div></div>
+        <div class="scrollbar" style="height: 245px;"><div class="track" style="height: 245px;"><div class="thumb" id = "thumb1"style="top: 4.7025px; height: 115.211px;"><div class="end"></div></div></div></div>
         <div class="viewport">
             <div class="overview" style="top: -10px;">
                 <ul id="area_ul">
@@ -344,7 +329,7 @@
                         <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_3" onclick="get_job(3);"><span class="txt">마케팅,광고 </span><span class="count">(3,926)</span></button></li>
                         <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_4" onclick="get_job(4);"><span class="txt">디자인 </span><span class="count">(6,362)</span></button></li>
                         <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_5" onclick="get_job(5);"><span class="txt">영업 </span><span class="count">(4,317)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_6" onclick="get_job(6);"><span class="txt">고객서비스,리 </span><span class="count">(1,448)</span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_6" onclick="get_job(6);"><span class="txt">고객서비스 </span><span class="count">(1,448)</span></button></li>
                         <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_7" onclick="get_job(7);"><span class="txt">게임 제작 </span><span class="count">(2,637)</span></button></li>
                         
                 </ul>
@@ -402,19 +387,17 @@
     </div>
     </div>
 <div id="sp_preview" class="wrap_search_result preview_v2">
-        <div class="add_keyword" id="Search_P">
-        <div id="sp_preview_selected" class="keywords"><span class="selected_keyword">서울전체<button type="button" id="sp_preview_area_101000" data-code="" class="btn_del remove-btn ">삭제</button></span></div>
-        
+        <div class="add_keyword" >
+        <div class="keywords" id="Search_P">
         <p class="result_txt">채용공고를 찾고 있습니다. 잠시만 기다려주세요.</p>
         <p class="reset_txt">검색조건을 설정해 주세요.</p>
     </div>
     <div class="area_btn">
         <button type="button" class="btn_expand" style="display: none;">펼쳐보기</button>
-        <button type="button" class="btn_reset">선택초기화</button>
     </div>
-    <button type="button" id="search_btn" class="btn_search">
+    <button type="submit" id="search_btn" class="btn_search" >
         <span>
-            <span class="count"><span id="search_count_txt"> </span><b id="sp_preview_total_cnt">39,862</b>건</span>
+            <span class="count"><span id="search_count_txt"> </span>
             <span id="search_btn_txt">검색완료</span>
         </span>
         <span class="ripple"></span>

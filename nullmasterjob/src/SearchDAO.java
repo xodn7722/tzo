@@ -1,9 +1,11 @@
 package web.bean.dao;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -62,15 +64,17 @@ public class SearchDAO {
 		return alist;
 	}
 	
-	public ArrayList<RecruitVO> getAlllist(String area, String job) {
+	public ArrayList<RecruitVO> getAlllist(ArrayList all) {
 		ArrayList<RecruitVO> list = new ArrayList<RecruitVO>();
 		try {	
 			conn = getConnection();
-			String sql = "select * from recruit where area = ? , job = ?";
+			for(int i = 0 ; i < all.size() ; i++) {
+				all.get(i);
+			String sql = "select * from recruit where area=? or job_c=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,area);
-			pstmt.setString(2,job);
-			rs= pstmt.executeQuery();
+			pstmt.setObject(1,all.get(i));
+			pstmt.setObject(2,all.get(i));
+			rs= pstmt.executeQuery(); }
 			while(rs.next()) {
 				RecruitVO vo = new RecruitVO();
 				vo.setRecruit_code(rs.getInt("recruit_code"));
@@ -87,7 +91,6 @@ public class SearchDAO {
 				vo.setEnd_date(rs.getDate("end_date"));
 				list.add(vo);
 			}
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

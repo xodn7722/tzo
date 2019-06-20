@@ -1,4 +1,4 @@
-package board.bean;
+package board.bean.vd;
 import java.sql.*;
 
 import javax.sql.*;

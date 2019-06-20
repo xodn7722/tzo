@@ -53,7 +53,7 @@ private static RecruitDBBean instance = new RecruitDBBean();
 		}catch(Exception e){ e.printStackTrace();}
 		finally {
 			  if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
-	            if(conn != null) {try {conn.close();}catch(SQLException s) {}}
+	           if(conn != null) {try {conn.close();}catch(SQLException s) {}}
 		}
 		return count;
 	}
@@ -78,25 +78,26 @@ private static RecruitDBBean instance = new RecruitDBBean();
 		return count;
 	}
 	
-	public void insertRecruit(String subject,String content,String group1,String group2,
+	public void insertRecruit(String subject,String content,String area,String job_c,
 			String img, String address, int compensation,String email_id,
-			int nominator,int applicant, Date end_date) 
+			int nominator,int applicant, Date end_date,String company) 
 	{
 		try {
 			conn = getConnection();
-			sql = "insert into recruit values(recruit_seq.NEXTVAL,sysdate,?,?,?,?,?,?,?,?,?,?,?)";
+			sql = "insert into recruit values(recruit_seq.NEXTVAL,sysdate,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setDate(1, end_date);
 			pstmt.setString(2, subject);
 			pstmt.setString(3, content);
-			pstmt.setString(4, group1);
-			pstmt.setString(5, group2);
+			pstmt.setString(4, area);
+			pstmt.setString(5, job_c);
 			pstmt.setString(6, img);
 			pstmt.setString(7, address);
 			pstmt.setInt(8, compensation);
 			pstmt.setString(9, email_id);
 			pstmt.setInt(10, nominator);
 			pstmt.setInt(11, applicant);
+			pstmt.setString(12, company);
 			pstmt.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -119,8 +120,8 @@ private static RecruitDBBean instance = new RecruitDBBean();
 				vo.setRecruit_code(rs.getInt("recruit_code"));
 				vo.setSubject(rs.getString("subject"));
 				vo.setContent(rs.getString("content"));
-				vo.setGroup1(rs.getString("group1"));
-				vo.setGroup2(rs.getString("group2"));
+				vo.setArea(rs.getString("area"));
+				vo.setJob_c(rs.getString("job_c"));
 				vo.setImg(rs.getString("img"));
 				vo.setAddress(rs.getString("address"));
 				vo.setCompensation(rs.getInt("Compensation"));
@@ -128,6 +129,7 @@ private static RecruitDBBean instance = new RecruitDBBean();
 				vo.setApplicant(rs.getInt("applicant"));
 				vo.setNominator(rs.getInt("nominator"));
 				vo.setEnd_date(rs.getDate("end_date"));
+				vo.setCompany_name(rs.getString("company_name"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -144,9 +146,9 @@ private static RecruitDBBean instance = new RecruitDBBean();
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(
-					"select recruit_code,subject,content,group1,group2,img,address,compensation,email_id,end_date,nominator,applicant, r "+
-							"from (select recruit_code,subject,content,group1,group2,img,address,compensation,email_id,end_date,nominator,applicant,rownum r " +
-							"from (select recruit_code,subject,content,group1,group2,img,address,compensation,email_id,end_date,nominator,applicant " +
+					"select recruit_code,subject,content,area,job_c,img,address,compensation,email_id,end_date,nominator,applicant,company_name, r "+
+							"from (select recruit_code,subject,content,area,job_c,img,address,compensation,email_id,end_date,nominator,applicant,company_name,rownum r " +
+							"from (select recruit_code,subject,content,area,job_c,img,address,compensation,email_id,end_date,nominator,applicant,company_name " +
 							"from recruit order by recruit_code desc) order by recruit_code desc) where r >= ? and r <= ? ");
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
@@ -158,8 +160,49 @@ private static RecruitDBBean instance = new RecruitDBBean();
 				RecruitDataBean recruit = new RecruitDataBean();
 				recruit.setEmail_id(rs.getString("email_id"));
 				recruit.setSubject(rs.getString("subject"));
-				recruit.setGroup1(rs.getString("group1"));
-				recruit.setGroup2(rs.getString("group2"));
+				recruit.setArea(rs.getString("area"));
+				recruit.setJob_c(rs.getString("job_c"));
+				recruit.setImg(rs.getString("img"));
+				recruit.setAddress(rs.getString("address"));
+				recruit.setRecruit_code(rs.getInt("recruit_code"));
+				recruit.setCompensation(rs.getInt("compensation"));
+				recruit.setContent(rs.getString("content"));
+				recruit.setEnd_date(rs.getDate("end_date"));
+				recruit.setCompany_name(rs.getString("company_name"));
+				recruitList.add(recruit);
+			} while(rs.next()); 
+		}
+	} catch(Exception e){
+		e.printStackTrace();
+		} finally {
+			if (pstmt!=null) try {	pstmt.close();	} catch (SQLException e) {}
+			if (conn!=null) try {	conn.close();	} catch (SQLException e) {}
+		}
+		return recruitList;
+	}
+	
+	public List getMyRecruits(int start, int end,String email_id) throws Exception {
+		List recruitList = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(
+					"select recruit_code,subject,content,area,job_c,img,address,compensation,email_id,end_date,nominator,applicant,company_name, r "+
+							"from (select recruit_code,subject,content,area,job_c,img,address,compensation,email_id,end_date,nominator,applicant,company_name,rownum r " +
+							"from (select recruit_code,subject,content,area,job_c,img,address,compensation,email_id,end_date,nominator,applicant,company_name " +
+							"from recruit order by recruit_code desc) order by recruit_code desc) where r >= ? and r <= ? and email_id=? ");
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			pstmt.setString(3, email_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				recruitList = new ArrayList(end);
+			do {
+				RecruitDataBean recruit = new RecruitDataBean();
+				recruit.setEmail_id(rs.getString("email_id"));
+				recruit.setSubject(rs.getString("subject"));
+				recruit.setArea(rs.getString("area"));
+				recruit.setJob_c(rs.getString("job_c"));
 				recruit.setImg(rs.getString("img"));
 				recruit.setAddress(rs.getString("address"));
 				recruit.setRecruit_code(rs.getInt("recruit_code"));
@@ -193,14 +236,15 @@ private static RecruitDBBean instance = new RecruitDBBean();
 				RecruitDataBean recruit = new RecruitDataBean();
 				recruit.setEmail_id(rs.getString("email_id"));
 				recruit.setSubject(rs.getString("subject"));
-				recruit.setGroup1(rs.getString("group1"));
-				recruit.setGroup2(rs.getString("group2"));
+				recruit.setArea(rs.getString("area"));
+				recruit.setJob_c(rs.getString("job_c"));
 				recruit.setImg(rs.getString("img"));
 				recruit.setAddress(rs.getString("address"));
 				recruit.setRecruit_code(rs.getInt("recruit_code"));
 				recruit.setCompensation(rs.getInt("compensation"));
 				recruit.setContent(rs.getString("content"));
 				recruit.setEnd_date(rs.getDate("end_date"));
+				recruit.setCompany_name(rs.getString("company_name"));
 				recruitList.add(recruit);
 			} while(rs.next()); 
 		}
@@ -213,16 +257,16 @@ private static RecruitDBBean instance = new RecruitDBBean();
 		return recruitList;
 	}
 	
-	public List getExtraction(String group1,int index) {
+	public List getExtraction(String job_c,int index) {
 		List recruitList = null;
 		try {
 			conn = getConnection();
-			sql = "select recruit_code,subject,content,group1,group2,img,address,compensation,email_id,end_date,nominator,applicant" + 
-					" from (select recruit_code,subject,content,group1,group2,img,address,compensation,email_id,end_date,nominator,applicant" + 
-					" from (select recruit_code,subject,content,group1,group2,img,address,compensation,email_id,end_date,nominator,applicant" + 
-					" from recruit order by recruit_code desc) order by recruit_code desc) where group1 =? and rownum <5 and recruit_code not in(?)";
+			sql = "select recruit_code,subject,content,area,job_c,img,address,compensation,email_id,end_date,nominator,applicant,company_name" + 
+					" from (select recruit_code,subject,content,area,job_c,img,address,compensation,email_id,end_date,nominator,applicant,company_name" + 
+					" from (select recruit_code,subject,content,area,job_c,img,address,compensation,email_id,end_date,nominator,applicant,company_name" + 
+					" from recruit order by recruit_code desc) order by recruit_code desc) where job_c =? and rownum <5 and recruit_code not in(?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, group1);
+			pstmt.setString(1, job_c);
 			pstmt.setInt(2, index);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -231,8 +275,8 @@ private static RecruitDBBean instance = new RecruitDBBean();
 				RecruitDataBean recruit = new RecruitDataBean();
 				recruit.setEmail_id(rs.getString("email_id"));
 				recruit.setSubject(rs.getString("subject"));
-				recruit.setGroup1(rs.getString("group1"));
-				recruit.setGroup2(rs.getString("group2"));
+				recruit.setArea(rs.getString("area"));
+				recruit.setJob_c(rs.getString("job_c"));
 				recruit.setImg(rs.getString("img"));
 				recruit.setAddress(rs.getString("address"));
 				recruit.setRecruit_code(rs.getInt("recruit_code"));
@@ -251,16 +295,16 @@ private static RecruitDBBean instance = new RecruitDBBean();
 		
 		return recruitList;
 	}
-	public int getExtractionCount(String group1,int index) {
+	public int getExtractionCount(String job_c,int index) {
 		int count = 0;
 		try {
 			conn = getConnection();
 			sql = "select max(rownum)" + 
-					" from (select recruit_code,subject,content,group1,group2,img,address,compensation,email_id,end_date,nominator,applicant" + 
-					" from (select recruit_code,subject,content,group1,group2,img,address,compensation,email_id,end_date,nominator,applicant" + 
-					" from recruit order by recruit_code desc) order by recruit_code desc) where group1 =? and rownum <5 and recruit_code not in(?)";
+					" from (select recruit_code,subject,content,area,job_c,img,address,compensation,email_id,end_date,nominator,applicant,company_name" + 
+					" from (select recruit_code,subject,content,area,job_c,img,address,compensation,email_id,end_date,nominator,applicant,company_name" + 
+					" from recruit order by recruit_code desc) order by recruit_code desc) where job_c =? and rownum <5 and recruit_code not in(?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, group1);
+			pstmt.setString(1, job_c);
 			pstmt.setInt(2, index);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -294,13 +338,13 @@ private static RecruitDBBean instance = new RecruitDBBean();
 	public void updateRecruit(RecruitDataBean recruit,Date end_date) {
 		try {
 			conn = getConnection();
-			sql = "update recruit set subject=?, content=?, group1=?, group2=?, end_date=?"
+			sql = "update recruit set subject=?, content=?, area=?, job_c=?, end_date=?"
 					+ " where recruit_code=?";
 			pstmt= conn.prepareStatement(sql);
 			pstmt.setString(1, recruit.getSubject());
 			pstmt.setString(2, recruit.getContent());
-			pstmt.setString(3, recruit.getGroup1());
-			pstmt.setString(4, recruit.getGroup2());
+			pstmt.setString(3, recruit.getArea());
+			pstmt.setString(4, recruit.getJob_c());
 			pstmt.setDate(5,end_date);
 			pstmt.setInt(6, recruit.getRecruit_code());
 			pstmt.executeUpdate();

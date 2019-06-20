@@ -6,8 +6,8 @@ public class RecruitDataBean {
 	private int recruit_code;
 	private String subject;
 	private String content;
-	private String group1;
-	private String group2;
+	private String area;
+	private String job_c;
 	private String img;
 	private String address;
 	private int compensation;
@@ -15,6 +15,7 @@ public class RecruitDataBean {
 	private int nominator;
 	private int applicant;
 	private Date end_date;
+	private String company_name;
 	
 	public Date getEnd_date() {
 		return end_date;
@@ -59,18 +60,18 @@ public class RecruitDataBean {
 		this.content = content;
 	}
 	
-	public String getGroup1() {
-		return group1;
+	public String getArea() {
+		return area;
 	}
-	public void setGroup1(String group1) {
-		this.group1 = group1;
+	public void setArea(String area) {
+		this.area = area;
 	}
 	
-	public String getGroup2() {
-		return group2;
+	public String getJob_c() {
+		return job_c;
 	}
-	public void setGroup2(String group2) {
-		this.group2 = group2;
+	public void setJob_c(String job_c) {
+		this.job_c = job_c;
 	}
 	
 	public String getImg() {
@@ -99,6 +100,12 @@ public class RecruitDataBean {
 	}
 	public void setEmail_id(String email_id) {
 		this.email_id = email_id;
+	}
+	public String getCompany_name() {
+		return company_name;
+	}
+	public void setCompany_name(String company_name) {
+		this.company_name = company_name;
 	}
 	
 	

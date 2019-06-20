@@ -1,4 +1,4 @@
-package event.bean.vd;
+
 import java.sql.*;
 import java.sql.Date;
 

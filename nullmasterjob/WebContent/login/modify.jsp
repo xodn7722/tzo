@@ -31,8 +31,13 @@ function checkForm(){
 			c.age.focus();
 			return false;
 		}
-
+}
 	
+</script>
+<script type="text/javascript">
+function sendmail(){
+	location.href="emailSendAction.jsp";
+	}
 </script>
 </head>
 <body>
@@ -84,6 +89,7 @@ function checkForm(){
         %>
           <label class="col-sm-3 col-form-label"> 인증정보 </label>
           <input class="form-control ml-2 mx-2" type="text" name="userEmailChecked" value="<%=m%>" disabled/>
+          <input type="button" class="btn btn-primary ml-2 mx-2" value="인증메일전송" onclick="sendmail()"/>
         </div>
          </div>
           <div align="center">

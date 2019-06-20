@@ -174,6 +174,26 @@ public class MemberDAO {
 	    			
 	    }
 	    
+	  public void updateCompanyMember(String id) {
+
+	    	Connection conn = null;
+	    	PreparedStatement pstmt = null;
+	    	
+	    	try {
+	            conn = getConnection();
+	            pstmt = conn.prepareStatement(
+	            "update member set mem_level='기업회원' where email_id=?");
+	           
+	    		pstmt.setString(1, id);
+	    	    pstmt.executeUpdate();
+	    	}catch(Exception ex){
+	    		ex.printStackTrace();
+	    	}finally {
+	    		if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+	            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	    	}
+	    }
+	  
 	    public void updateMember(MemberVO vo) throws SQLException{ //회원정보업데이트
 	    	
 	    	Connection conn = null;

@@ -18,6 +18,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="table style.css" rel="stylesheet" type="text/css"/>
+<link href="tinyscrollbar.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.tinyscrollbar.min.js"></script>
@@ -32,15 +33,6 @@
 	  $("#job_select").click(function(){
 		    $("#job_catagory_on").toggle(), $("#area_select_on").hide();
 		  });
-	  $("#Search_P input[type='hidden']").each(function(i,item){
-
-		    if(item.value != ""){
-
-		        console.log(item.value)
-
-		    }
-
-		}); 
 });
 	</script>
 	<script>

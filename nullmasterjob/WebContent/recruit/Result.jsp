@@ -23,12 +23,13 @@
 	}
 	for(int i=0;i<all.size();i++)
 	{
-		//out.print(all.get(i));
+		out.print(all.get(i));
 	}
 
 	 SearchDAO search = SearchDAO.getInstance();
 	ArrayList <RecruitVO> list = search.getAlllist(all); 	
-		out.print(list);
+	for(int i = 0; i<list.size(); i++){
+		out.print(list.toString());}
 %>
 
 <body>

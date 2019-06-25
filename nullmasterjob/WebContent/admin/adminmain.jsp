@@ -12,15 +12,15 @@
     
         function changeForm(val){
             if(val == "-1"){
-                location.href="/taewoo2/login/logout.jsp";
+                location.href="/nullmasterjob/login/logout.jsp";
             }else if(val == "0"){
-                location.href="/taewoo2/admin/admin_member_list.jsp";
+                location.href="/nullmasterjob/admin/admin_member_list.jsp";
             }else if(val == "1"){
                 location.href="admin_company_list.jsp";
             }else if(val == "2"){
                 location.href="";
             }else if(val == "3"){
-                location.href="/taewoo2/login/modify.jsp";
+                location.href="/nullmasterjob/login/modify.jsp";
             }
        
         }
@@ -40,6 +40,6 @@
 <%}else{%>
 <script>
 alert("로그인해주세요");
-location.href="/taewoo2/login/loginForm.jsp"
+location.href="/nullmasterjob/login/loginForm.jsp"
 </script>
 <%}%>

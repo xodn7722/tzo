@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="member.bean.vd.*"%>
+<%@ page import="web.member.dao.MemberDAO*"%>
  <%@page import="java.util.ArrayList"%>
 <% if(session.getAttribute("loginID") == null ){%>
 
@@ -54,11 +54,11 @@ function back(){
 
 	<%
      
-	MemberDBBean dao = MemberDBBean.getInstance();
+	MemberDAO dao = MemberDAO.getInstance();
         
-	    ArrayList<MemberDataBean> list = dao.getAllMember();
+	    ArrayList<MemberVO> list = dao.getAllMember();
         for(int i = 0 ; i < list.size(); i++){
-        	MemberDataBean a = list.get(i);
+        	MemberVO a = list.get(i);
 	%>
 
 			<tr>

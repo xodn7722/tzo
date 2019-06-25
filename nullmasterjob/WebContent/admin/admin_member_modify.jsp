@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.bean.vd.*"%>
+<%@ page import="web.member.dao.MemberDAO"%>
+<%@ page import="web.member.vo.MemberVO" %>
 <!DOCTYPE html>
 <html>
 <head>
 <%
   String id = request.getParameter("id");
   
-  MemberDBBean dao = MemberDBBean.getInstance();
-  MemberDataBean vo = dao.getMember(id);
+  MemberDAO dao = MemberDAO.getInstance();
+  MemberVO vo = dao.getMember(id);
   
 %>
 <script language="javascript">

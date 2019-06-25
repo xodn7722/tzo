@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.bean.vd.*"%>
+<%@ page import="web.member.dao.MemberDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%
 	String id  = request.getParameter("id");
 	
-	MemberDBBean dao = MemberDBBean.getInstance();
+    MemberDAO dao = MemberDAO.getInstance();
 	dao.admindeleteMember(id);
 	response.sendRedirect("admin_member_list2.jsp");
 %>

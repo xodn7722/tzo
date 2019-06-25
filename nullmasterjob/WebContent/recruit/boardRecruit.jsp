@@ -66,7 +66,7 @@
 
   	<jsp:include page="/menu/menu.jsp" />
 	<div class="container">
-		<jsp:include page="/recruit/NewFile2.jsp" />///
+		<jsp:include page="/recruit/NewFile2.jsp" />
 		<div class="row" align="center">
 		<% if(count ==0){ %>
 		<h1>저장된 글이 없습니다.</h1>

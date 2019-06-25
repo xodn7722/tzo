@@ -1,12 +1,10 @@
 <%@page import="web.member.vo.MemberVO"%>
+<%@page import="web.member.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="company.bean.vd.*" %>
  <%@page import="java.util.ArrayList"%>
  
-<jsp:useBean id="vo" class="web.member.vo.MemberVO">
-    <jsp:setProperty name="vo" property="*" />
-    </jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +25,7 @@ function next(){
  return false;
  }
 }
+
 function back(){
   location.href="adminmain.jsp"
 }
@@ -49,6 +48,7 @@ function back(){
          <td width="100"> email_id </td>
          <td width="30"> logo </td>
          <td width="30"> img </td>
+         <td width="50"> 등급</td>
          <td width="70"> 수락 </td>
          </tr>
       </thead>
@@ -56,10 +56,14 @@ function back(){
 	<%
      
 	CompanyDBBean DBBean = CompanyDBBean.getInstance();
-        
+	
+	
 	    ArrayList<CompanyDataBean> list = DBBean.getAllCompany();
         for(int i = 0 ; i < list.size(); i++){
         	CompanyDataBean a = list.get(i);
+        	MemberDAO dao = MemberDAO.getInstance();
+        	MemberVO vo = dao.getMember(a.getEmail_id());
+        			
 	%>
          <tbody>
 			<tr>
@@ -72,6 +76,7 @@ function back(){
                 <td><%=a.getEmail_id() %></td>
                 <td><%=a.getLogo() %></td>
                 <td><%=a.getImg() %></td>
+                <td><%=vo.getMem_level()%></td>
                 <td><a href="admin_company_accept.jsp?id=<%=a.getEmail_id()%>" onclick="return next()">수락</a></td> 
 			</tr>
         </tbody>

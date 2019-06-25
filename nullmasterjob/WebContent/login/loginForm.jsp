@@ -85,7 +85,7 @@
   <div id="naver_id_login"></div>
   <!-- //네이버아이디로로그인 버튼 노출 영역 -->
   <script type="text/javascript">
-  	var naver_id_login = new naver_id_login("HDIpId2jSoQA1sekOyA4", "http://localhost/taewoo/login/naverlogin.jsp");
+  	var naver_id_login = new naver_id_login("HDIpId2jSoQA1sekOyA4", "http://localhost/taewoo2/login/naverlogin.jsp");
   	var state = naver_id_login.getUniqState();
   	naver_id_login.setButton("green", 3,60);
   	naver_id_login.setDomain("http://localhost/taewoo/login/loginForm.jsp");

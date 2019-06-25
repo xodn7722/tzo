@@ -18,32 +18,17 @@
 
 
 <body >
-	<jsp:include page="/menu/menu.jsp" />
-	<div class="jumbotron">
-		<div class="container">
+   <jsp:include page="/menu/menu.jsp"/>
 			<h1 class="display-3">회원탈퇴가완료되었습니다</h1>
-		</div>
-	</div>
+	
 	
 	<div class="container">
-		<div class="row" align="center">
-			
-		</div>
+	
 		<div class="col-md-4">
-		<form method="post" action="/taewoo/main.jsp" name="userinput" >
-<table>
-  <tr > 
-    <td>
-	 <b>회원정보가 삭제되었습니다.</b>
-	</td>
-  </tr>
- 
-  <tr>
-    <td> 
+		<form method="post" action="/taewoo2/main.jsp" name="userinput" >
+
       <input type="submit" value="확인">
-    </td>
-  </tr>
-</table>
+
 </form>
 <%}else {%>
 	<script> 

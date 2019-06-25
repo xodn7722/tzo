@@ -84,7 +84,7 @@ function checkForm(){
           if(vo.getUserEmailChecked() == 1){ m = r; }else{ m = ro;}
         %>
           <label class="col-sm-3 col-form-label"> 인증정보 </label>
-          <input class="form-control ml-2 mx-2" type="text" name="userEmailChecked" value="<%=m%>" disabled/>
+          <input class="form-control ml-2 mx-2" type="text" name="userEmailChecked" value="<%=m%>" />
           
         </div>
          </div>

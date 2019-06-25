@@ -38,6 +38,9 @@ function checkForm(){
 function sendmail(){
 	location.href="emailSendAction.jsp";
 	}
+function backhome(){
+	history.go(-1);
+}
 </script>
 </head>
 <body>
@@ -48,7 +51,7 @@ function sendmail(){
         <div class="col-sm-4">
         <div class="form-group row">
           <label class="col-sm-1 col-form-label"> Email </label>
-          <input class="form-control ml-2 mx-2" type="text" name="email_id" value="<%=vo.getEmail_id()%>" disabled/>
+          <input class="form-control ml-2 mx-2" type="text" name="email_id" value="<%=vo.getEmail_id()%>" readonly/>
         </div>
         <div class="mb-2 my-2">
         <small id="emailHelp" class="form-text text-muted">Email은수정이불가능합니다</small>
@@ -79,7 +82,7 @@ function sendmail(){
         </div>
         <div class="form-group row">
           <label class="col-sm-3 col-form-label"> 회원정보 </label>
-          <input class="form-control ml-2 mx-2" type="text" name="mem_level" value="<%=vo.getMem_level()%>" disabled/>
+          <input class="form-control ml-2 mx-2" type="text" name="mem_level" value="<%=vo.getMem_level()%>" readonly/>
         </div>
         <div class="form-group row">
         <%String m = null;
@@ -96,7 +99,7 @@ function sendmail(){
       <div class="form-group">
       <input type="submit" class="btn btn-primary" value="정보수정">
       <input type="button" class="btn btn-primary" value="회원탈퇴" onclick="javascript:window.location='deletemember.jsp'">
-     <input type="button" class="btn btn-primary" value="뒤로가기" onclick="javascript:window.location='main.jsp'"> 
+     <input type="button" class="btn btn-primary" value="뒤로가기" onclick="backhome()"> 
       </div>
       </div>
      </form>

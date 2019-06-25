@@ -149,7 +149,7 @@
 
 		script.println("alert('인증이메일전송완료.');");
 
-		script.println("location.href = 'loginmain.jsp'");
+		script.println("location.href = 'modify.jsp'");
 
 		script.println("</script>");
 

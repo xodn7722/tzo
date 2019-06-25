@@ -41,11 +41,12 @@
 		<% } else {
 	String subject = multi.getParameter("subject");
 	String content = multi.getParameter("content");
-	String group1 = multi.getParameter("group1");
-	String group2 = multi.getParameter("group2");
+	String area = multi.getParameter("area");
+	String job_c = multi.getParameter("job_c");
 	String address = multi.getParameter("address");
 	String email_id = multi.getParameter("email_id");
 	String day = multi.getParameter("end_date");
+	String company = multi.getParameter("company_name");
 	java.sql.Date end_date =  java.sql.Date.valueOf(day);
 	int nominator = Integer.parseInt(multi.getParameter("nominator"));
 	int applicant = Integer.parseInt(multi.getParameter("applicant"));
@@ -56,7 +57,7 @@
 		String fileName = multi.getFilesystemName(fname);
 		
 	RecruitDBBean dao = RecruitDBBean.getInstance();
-	dao.insertRecruit(subject, content, group1, group2, fileName, address, compensation,email_id, nominator, applicant, end_date);
+	dao.insertRecruit(subject, content, area, job_c, fileName, address, compensation,email_id, nominator, applicant, end_date,company);
 	
 	response.sendRedirect("boardRecruit.jsp");
 	}

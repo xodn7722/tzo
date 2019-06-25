@@ -9,15 +9,17 @@
 <%
 	String str = request.getParameter("code");
 	int index = Integer.parseInt(str);
-	ResumeDAO dao = ResumeDAO.getInstance();
-	ResumeVO vo = dao.getResume(index);
+	ResumeDBBean dao = ResumeDBBean.getInstance();
+	ResumeDataBean vo = dao.getResume(index);
 %>
 
 </head>
 <body>
 
 	<% if(session.getAttribute("loginID").equals(vo.getEmail_id())) {%>
-		<jsp:include page="/menu/menu.jsp"/>
+
+	<jsp:include page="/menu/menu.jsp"/>
+
 		
 		<br/>
 <h1 align="center" class="">이력서 수정하기</h1></br>

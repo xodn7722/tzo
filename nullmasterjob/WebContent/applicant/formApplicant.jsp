@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="web.member.dao.*" %>
-<%@ page import="web.member.vo.*" %>
+<%@page import="member.bean.vd.*"%>
 <%@ page import="resume.bean.vd.*" %>
 <%@ page import="company.bean.vd.*" %>
 <%@ page import="file.bean.vd.*" %>
@@ -13,15 +12,15 @@
 	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
 <title>지원하기</title>
 
-<%	
+<%
 	String id = (String)session.getAttribute("loginID");
 	String recruit_code =request.getParameter("code");
 	
-	MemberDAO mdao = MemberDAO.getInstance();
-	MemberVO mvo = mdao.getMember(id);
+	MemberDBBean mdao = MemberDBBean.getInstance();
+	MemberDataBean mvo = mdao.getMember(id);
 	
 	FileDBBean filedao = FileDBBean.getInstance();
-	ResumeDAO resumedao = ResumeDAO.getInstance();
+	ResumeDBBean resumedao = ResumeDBBean.getInstance();
 	
 	List fileList = null, resumeList=null;
 	
@@ -35,8 +34,6 @@
 	if (resumecount >0){
 		resumeList = resumedao.getAllResume(id);
 	}
-	
-	
 %>
 
 <script type="text/javascript">
@@ -84,7 +81,7 @@
 				<select class="form-control" name="file_name">
 				<% for(int i=0; i< filecount; i++){ 
 					FileDataBean vo = (FileDataBean)fileList.get(i); %>
-				<option value="<%=vo.getName()%>"><%=vo.getName()%></option>
+				<option value="<%=vo.getName()%>"><%=vo.getSubject()%></option>
 				<%} %>
 				</select>
 				<%} %>
@@ -98,8 +95,10 @@
 					<h5>저장된 이력서가없습니다.</h5>
 				<% } else {%>
 				<select class="form-control" name="resume_subject">
-				<% for(int i=0; i< resumecount; i++){ 
-					ResumeVO vo = (ResumeVO)resumeList.get(i); %>
+				<%
+					for(int i=0; i< resumecount; i++){ 
+							ResumeDataBean vo = (ResumeDataBean)resumeList.get(i);
+				%>
 				<option value="<%=vo.getResume_title()%>"><%=vo.getResume_title()%></option>
 				<%} %>
 				</select>

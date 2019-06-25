@@ -10,10 +10,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-   	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css?ver=1">
-	<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
-	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+	<jsp:include page="/menu/menu.jsp"/>
+
+
  <style>
     body { 
       margin: 0px;
@@ -72,12 +71,12 @@
 	int index = Integer.parseInt(str);
 	RecruitDBBean dao = RecruitDBBean.getInstance();
 	RecruitDataBean vo = dao.getRecruit(index);
-	String group1 = vo.getGroup1();
-	int count = dao.getExtractionCount(group1, index);
+	String job_c = vo.getJob_c();
+	int count = dao.getExtractionCount(job_c, index);
 	
 	 List recruitList = null;
 	    if (count >0){
-	    	recruitList = dao.getExtraction(group1, index);
+	    	recruitList = dao.getExtraction(job_c, index);
 	    }
 	
 	DecimalFormat df = new DecimalFormat("###,###,###,###");
@@ -124,13 +123,12 @@
 	  var pop = window.open("../applicant/formApplicant.jsp?code=<%=vo.getRecruit_code()%>","pop","width=550,height=400, scrollbars=yes, resizable=yes"); 
   }
   function nominator(){
-	  var pop = window.open("../nominator/formNominator.jsp","pop","width=570,height=600, scrollbars=yes, resizable=yes"); 
+	  var pop = window.open("../nominator/formNominator.jsp?code=<%=vo.getRecruit_code()%>","pop","width=570,height=600, scrollbars=yes, resizable=yes"); 
   }
   </script>
 <title><%=vo.getSubject() %></title>
 </head>
 <body>
-<jsp:include page="/menu/menu.jsp" />
 <div class="null"> </div>
 	<div class="container">
 		<div class="row" align="center">
@@ -202,7 +200,7 @@
 			<div class="container">
 			<div class="text-left">
 			<div class="null"> </div>
-			<h6><%=vo.getGroup1() %> 관련 최신글 입니다.</h6>
+			<h6><%=vo.getJob_c() %> 관련 최신글 입니다.</h6>
 			</div>
 			<div class="row" align="center">
 		<% if(count == 0){ 
@@ -215,7 +213,7 @@
 			%>
 			<div class="col-md-3">
 			<a href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
-				<img src="/ProjectTest/resources/images/<%=forvo.getImg()%>" style="width: 100%; height: 80%"> </a>
+				<img src="/ProjectTest/resources/recruit/<%=forvo.getImg()%>" style="width: 100%; height: 80%"> </a>
 				<a class="btn btn-default" href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
 				<h6><%=forvo.getSubject()%></h6>
 				<p><%=compensation%></p>

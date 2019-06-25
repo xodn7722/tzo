@@ -27,12 +27,12 @@ int check = dao.confirmId(email_id);
      if( check == 1){
 	  
 	       session.setAttribute("loginID", email_id);
-           response.sendRedirect("main.jsp");
+           response.sendRedirect("/nullmasterjob/main.jsp");
     
      }else{
 	       dao.insertMember(vo);      
 	       session.setAttribute("loginID", email_id);
-           response.sendRedirect("main.jsp");
+           response.sendRedirect("/nullmasterjob/main.jsp");
 		
 }%>  
 

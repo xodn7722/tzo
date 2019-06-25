@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import ="web.bean.dao.SearchDAO" %>
-<%@ page import ="web.bean.vo.JobSubVO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page import ="search.bean.vd.*"%>
+<%@ page import="job.bean.vd.*" %>
 <%@ page import ="java.util.*" %>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">

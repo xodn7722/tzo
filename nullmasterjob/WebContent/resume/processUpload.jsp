@@ -22,9 +22,9 @@
 	
 	String email_id = (String)session.getAttribute("loginID");
 	
-		Enumeration files = multi.getFileNames();
-		String fname = (String) files.nextElement();
-		String fileName = multi.getFilesystemName(fname);
+
+		String fileName = multi.getFilesystemName("file");
+		String subject = multi.getParameter("subject");
 	
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -35,10 +35,11 @@
 		Context env = (Context)ctx.lookup("java:comp/env");
 		DataSource ds = (DataSource)env.lookup("jdbc/xe");
 		conn = ds.getConnection();
-		sql = "insert into resumefile values(resumefile_seq.NEXTVAL,?,?)";
+		sql = "insert into resumefile values(resumefile_seq.NEXTVAL,?,?,?)";
 		pstmt= conn.prepareStatement(sql);
-		pstmt.setString(1, fileName);
-		pstmt.setString(2, email_id);
+		pstmt.setString(1, subject);
+		pstmt.setString(2, fileName);
+		pstmt.setString(3, email_id);
 		pstmt.executeUpdate();
 	
 	if(pstmt != null) try { pstmt.close(); } catch (Exception e) { e.printStackTrace();}

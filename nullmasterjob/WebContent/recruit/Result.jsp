@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "web.bean.dao.SearchDAO" %>
-<%@ page import = "web.bean.vo.RecruitVO" %>
+<%@ page import ="search.bean.vd.*"%>
+<%@ page import = "recruit.bean.vd.*" %>
 <%@ page import = "java.util.*" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -27,7 +27,7 @@
 	}
 
 	 SearchDAO search = SearchDAO.getInstance();
-	ArrayList <RecruitVO> list = search.getAlllist(all); 	
+	ArrayList <RecruitDataBean> list = search.getAlllist(all); 	
 	for(int i = 0; i<list.size(); i++){
 		out.print(list.toString());}
 %>

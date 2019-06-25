@@ -1,10 +1,9 @@
-<%@page import="web.member.vo.MemberVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page import="member.bean.vd.*"%>
 <%@page import="company.bean.vd.*" %>
- <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
  
-<jsp:useBean id="vo" class="web.member.vo.MemberVO">
+<jsp:useBean id="vo" class="member.bean.vd.MemberDataBean">
     <jsp:setProperty name="vo" property="*" />
     </jsp:useBean>
 <!DOCTYPE html>
@@ -35,7 +34,8 @@ function back(){
 <title>관리자 - 회원관리</title>
 </head>
 <body>
-     <jsp:include page="/menu/menu.jsp" /></br>
+	<jsp:include page="/menu/menu.jsp"/>
+	<br/>
 
       <table class="table table-striped table-hover">
       <thead>
@@ -56,10 +56,12 @@ function back(){
 	<%
      
 	CompanyDBBean DBBean = CompanyDBBean.getInstance();
-        
+
+	
 	    ArrayList<CompanyDataBean> list = DBBean.getAllCompany();
         for(int i = 0 ; i < list.size(); i++){
         	CompanyDataBean a = list.get(i);
+        	
 	%>
          <tbody>
 			<tr>

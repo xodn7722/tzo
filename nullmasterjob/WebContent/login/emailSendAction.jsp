@@ -81,7 +81,7 @@
 
 	// 사용자에게 보낼 메시지를 기입합니다.
 
-	String host = "http://localhost:80/taewoo/login/";
+	String host = "http://localhost:80/nullmasterjob/login/";
 
 	String from = "xodn7722@gmail.com";
 
@@ -149,7 +149,7 @@
 
 		script.println("alert('인증이메일전송완료.');");
 
-		script.println("location.href = 'loginmain.jsp'");
+		script.println("location.href = 'modify.jsp'");
 
 		script.println("</script>");
 

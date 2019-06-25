@@ -1,8 +1,5 @@
-<%@page import="web.member.vo.MemberVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
- <%@page import="web.member.vo.MemberVO" %>
- <%@page import="web.member.dao.MemberDAO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page import="member.bean.vd.*"%>
  <%@page import="java.util.ArrayList"%>
 <% if(session.getAttribute("loginID") == null ){%>
 
@@ -32,8 +29,10 @@ function back(){
 <title>관리자 - 회원관리</title>
 </head>
 <body>
-<jsp:include page="/menu/menu.jsp" />
-</br></br>
+<div class="container">
+	<jsp:include page="/menu/menu.jsp"/>
+	</div>
+	<br>
 <div class="container">
    <div align="center">
    <div class="col-md-12">   
@@ -55,11 +54,11 @@ function back(){
 
 	<%
      
-		MemberDAO dao = MemberDAO.getInstance();
+	MemberDBBean dao = MemberDBBean.getInstance();
         
-	    ArrayList<MemberVO> list = dao.getAllMember();
+	    ArrayList<MemberDataBean> list = dao.getAllMember();
         for(int i = 0 ; i < list.size(); i++){
-        	MemberVO a = list.get(i);
+        	MemberDataBean a = list.get(i);
 	%>
 
 			<tr>
@@ -82,6 +81,9 @@ function back(){
 
  <div align="center">
    <input type="button" value="뒤로" onclick="back()" />
+ </div>
+ </div>
+ </div>
  </div>
 </body>
 

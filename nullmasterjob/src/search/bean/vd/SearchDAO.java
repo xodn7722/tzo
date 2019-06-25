@@ -1,4 +1,5 @@
-package web.bean.dao;
+package search.bean.vd;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,11 +10,7 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-import web.bean.vo.AreaBVO;
-import web.bean.vo.AreaVO;
-import web.bean.vo.JobSubVO;
-import web.bean.vo.RecruitVO;
+import recruit.bean.vd.*;
 
 public class SearchDAO {
 	private static SearchDAO instance = new SearchDAO();
@@ -63,8 +60,8 @@ public class SearchDAO {
 		return alist;
 	}
 	
-	public ArrayList<RecruitVO> getAlllist(ArrayList all) {
-		ArrayList<RecruitVO> list = new ArrayList<RecruitVO>();
+	public ArrayList<RecruitDataBean> getAlllist(ArrayList all) {
+		ArrayList<RecruitDataBean> list = new ArrayList<RecruitDataBean>();
 		try {	
 			conn = getConnection();
 			for(int i = 0 ; i < all.size() ; i++) {
@@ -75,7 +72,7 @@ public class SearchDAO {
 			pstmt.setObject(2,(String)all.get(i));
 			rs= pstmt.executeQuery();
 			while(rs.next()) {
-				RecruitVO vo = new RecruitVO();
+				RecruitDataBean vo = new RecruitDataBean();
 				vo.setRecruit_code(rs.getInt("recruit_code"));
 				vo.setSubject(rs.getString("subject"));
 				vo.setContent(rs.getString("content"));
@@ -103,34 +100,6 @@ public class SearchDAO {
 	}
 
 
-	public AreaBVO getAllBLocation(int no) {
-			AreaBVO vo = null;
-		try {	
-			conn = getConnection();
-			String sql = "select * from areagroup where ano = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,no);
-			rs= pstmt.executeQuery();
-			while(rs.next()) {
-				vo = new AreaBVO();
-				vo.setAno(rs.getInt("ano"));
-				vo.setAname(rs.getString("aname"));
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			if(rs != null){try {rs.close();}catch(SQLException e) {}}
-			if(pstmt != null){try {pstmt.close();}catch(SQLException e) {}}
-			if(conn != null){try {conn.close();}catch(SQLException e) {}}
-		}
-		return vo;
-	}
-	
-	
-	
-	
-	
 	public ArrayList<JobSubVO> getAllSubJob(int jno) {
 		ArrayList<JobSubVO> jslist = new ArrayList<JobSubVO>();
 		try {	

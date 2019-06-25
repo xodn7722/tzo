@@ -6,18 +6,16 @@
 <jsp:useBean id="file" class="file.bean.vd.FileDataBean">
 	<jsp:setProperty name="file" property="*"/>
 </jsp:useBean>
-<jsp:useBean id="resume" class="resume.bean.vd.ResumeVO">
+<jsp:useBean id="resume" class="resume.bean.vd.ResumeDataBean">
 	<jsp:setProperty name="resume" property="*"/>
 </jsp:useBean>
 
 <!DOCTYPE html>
+
+	<jsp:include page="/menu/menu.jsp"/>
+
 <html>
 <head>
-<meta charset="UTF-8">
-   	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css?ver=1">
-	<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
-	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
 	
 <title>My이력서</title>
 <style type="text/css">
@@ -70,6 +68,28 @@
   -ms-box-pack:center;
   -ms-box-align:center;
  }
+ 
+ .box{
+ width: 250px;
+  	height: 250px;
+  	display:-webkit-box;
+  	display:-moz-box;
+ 	 display:-ms-flexbox;
+ 	 display:-webkit-flex;
+ 	 display:flex;
+
+  align-items:center;
+  justify-content:center;
+  -webkit-align-items:center;
+  -webkit-justify-content:center;
+
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+  -ms-box-pack:center;
+  -ms-box-align:center;
+ }
 
 </style>
 
@@ -81,7 +101,7 @@
 	<%
 		String email_id = (String)session.getAttribute("loginID");
 		FileDBBean dao = FileDBBean.getInstance();
-		ResumeDAO redao = ResumeDAO.getInstance();
+		ResumeDBBean redao = ResumeDBBean.getInstance();
 		
 		int MAX_FILE = 10;
 		int count = 0, recount=0;
@@ -101,7 +121,14 @@
 	%>
 </head>
 <body>
-	<jsp:include page="/menu/menu.jsp"/>
+	<% if(session.getAttribute("loginID")==null){ %>
+		<img alt="resume" src="/ProjectTest/resources/img/resume.png" width="100%" height="100%">
+		<div class="container" align="center">
+		<div class="box" >
+			<button name="btn_resume" class="btn btn-primary" onclick="location='/ProjectTest/login/loginForm.jsp';">이력서 쓰기</button>
+		</div>
+		</div>
+	<%} else {%>
 	<div class="null"></div>
 	<div class="container">
 	<div class="null"></div>
@@ -115,27 +142,30 @@
 		</div>
 		
 		<div class="row">
-		<% if (count == 0){ %>
+		<%
+			if (count == 0){
+		%>
 		<div class="FileBox">
 			<div>
 				저장된 파일이 없습니다.
 			</div>
 		</div>
-		<%} else{
+		<%
+			} else{
 			for(int i=0; i< count; i++){
 				FileDataBean vo = (FileDataBean)FileList.get(i);
-			%>
+		%>
 		<div class="col-md-2">
 		<div class="FileBox">
-			<div>
 				<a href="processDownload.jsp?name=<%=vo.getName()%>&id=<%=vo.getEmail_id()%>">
-				<%=vo.getName() %>
+				<%=vo.getSubject()%>
 				</a>
-			</div>
 		</div>
 		</div>
-		<%	}  
-			}%>
+		<%
+			}  
+			}
+		%>
 	</div>
 	</div>
 	<div class="null"></div>
@@ -152,16 +182,19 @@
 		</div>
 		
 		<div class="row">
-		<% if (recount == 0){ %>
+		<%
+			if (recount == 0){
+		%>
 		<div class="ResumeBox">
 			<div>
 				저장된 문서가 없습니다.
 			</div>
 		</div>
-		<%} else{
+		<%
+			} else{
 			for(int i=0; i< recount; i++){
-				ResumeVO vo = (ResumeVO)resumeList.get(i);
-			%>
+				ResumeDataBean vo = (ResumeDataBean)resumeList.get(i);
+		%>
 		<div class="col-md-3">
 		<div class="ResumeBox">
 			<div>
@@ -170,6 +203,7 @@
 		</div>
 		</div>
 		<%	}  
+			}
 			}%>
 	</div>
 	</div>

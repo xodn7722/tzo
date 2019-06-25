@@ -1,10 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page import ="web.bean.dao.SearchDAO" %>
-<%@page import ="web.bean.vo.AreaVO" %>
-<%@page import ="web.bean.vo.JobSubVO" %>
-<%@page import ="web.bean.vo.JobDetailVO" %>
-<%@page import ="web.bean.vo.JobVO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page import ="search.bean.vd.*"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <%
@@ -13,16 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>	
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="table style.css" rel="stylesheet" type="text/css"/>
-<link href="tinyscrollbar.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script type="text/javascript" src="jquery.tinyscrollbar.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>	
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -189,24 +176,24 @@
         <div class="viewport">
             <div class="overview" style="top: -10px;">
                 <ul id="area_ul">
-                        <li class="depth1_btn_wrapper selected on"><button type="button" class="depth1_btn_1" id=""onclick="get_area(1);" ><span class="txt" id='seoul'>서울 </span><span class="count">(39,862)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_2" onclick="get_area(2);"><span class="txt">경기 </span><span class="count">(23,595)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_3" onclick="get_area(3);"><span class="txt">인천 </span><span class="count">(3,926)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_4" onclick="get_area(4);"><span class="txt">부산 </span><span class="count">(6,362)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_5" onclick="get_area(5);"><span class="txt">대구 </span><span class="count">(4,317)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_6" onclick="get_area(6);"><span class="txt">광주 </span><span class="count">(1,448)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_7" onclick="get_area(7);"><span class="txt">대전 </span><span class="count">(2,637)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_8" onclick="get_area(8);"><span class="txt">울산 </span><span class="count">(1,291)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_9" onclick="get_area(9);"><span class="txt">세종 </span><span class="count">(503)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_10" onclick="get_area(10);"><span class="txt">강원 </span><span class="count">(942)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_11" onclick="get_area(11);"><span class="txt">경남 </span><span class="count">(3,597)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_12" onclick="get_area(12);"><span class="txt">경북 </span><span class="count">(2,376)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_13" onclick="get_area(13);"><span class="txt">전남 </span><span class="count">(837)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_14" onclick="get_area(14);"><span class="txt">전북 </span><span class="count">(1,190)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_15" onclick="get_area(15);"><span class="txt">충남 </span><span class="count">(3,241)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_16" onclick="get_area(16);"><span class="txt">충북 </span><span class="count">(2,533)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_17" onclick="get_area(17);"><span class="txt">제주 </span><span class="count">(790)</span></button></li>
-                        <li class="depth1_btn_wrapper " id="depth1_btn_117000"><button type="button" class="depth1_btn_117000"><span class="txt">전국 </span><span class="count">(419)</span></button></li>
+                        <li class="depth1_btn_wrapper selected on"><button type="button" class="depth1_btn_1" id=""onclick="get_area(1);" ><span class="txt" id='seoul'>서울 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_2" onclick="get_area(2);"><span class="txt">경기 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_3" onclick="get_area(3);"><span class="txt">인천 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_4" onclick="get_area(4);"><span class="txt">부산 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_5" onclick="get_area(5);"><span class="txt">대구 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_6" onclick="get_area(6);"><span class="txt">광주 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_7" onclick="get_area(7);"><span class="txt">대전 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_8" onclick="get_area(8);"><span class="txt">울산 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_9" onclick="get_area(9);"><span class="txt">세종 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_10" onclick="get_area(10);"><span class="txt">강원 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_11" onclick="get_area(11);"><span class="txt">경남 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_12" onclick="get_area(12);"><span class="txt">경북 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_13" onclick="get_area(13);"><span class="txt">전남 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_14" onclick="get_area(14);"><span class="txt">전북 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_15" onclick="get_area(15);"><span class="txt">충남 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_16" onclick="get_area(16);"><span class="txt">충북 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_17" onclick="get_area(17);"><span class="txt">제주 </span></button></li>
+                        <li class="depth1_btn_wrapper " id="depth1_btn_117000"><button type="button" class="depth1_btn_117000"><span class="txt">전국 </span></button></li>
                     
                 </ul>
             </div>
@@ -227,43 +214,43 @@
                             <li>
                                 <div class="sri_input3">
                                     <input type="checkbox" id="loc_cd_101010" name="loc_cd">
-                                    <label for="loc_cd_101010"><span class="txt">강남구</span><span class="count"> (13,201)</span></label>
+                                    <label for="loc_cd_101010"><span class="txt">강남구</span></label>
                                 </div>
                             </li>
                             <li>
                                 <div class="sri_input3">
                                     <input type="checkbox" id="loc_cd_101020" name="loc_cd" >
-                                    <label for="loc_cd_101020"><span class="txt">강동구</span><span class="count"> (848)</span></label>
+                                    <label for="loc_cd_101020"><span class="txt">강동구</span></label>
                                 </div>
                             </li>
                             <li>
                                 <div class="sri_input3">
                                     <input type="checkbox" id="loc_cd_101030" name="loc_cd" value="101030">
-                                    <label for="loc_cd_101030"><span class="txt">강북구</span><span class="count"> (368)</span></label>
+                                    <label for="loc_cd_101030"><span class="txt">강북구</span></label>
                                 </div>
                             </li>
                             <li>
                                 <div class="sri_input3">
                                     <input type="checkbox" id="loc_cd_101040" name="loc_cd" value="101040">
-                                    <label for="loc_cd_101040"><span class="txt">강서구</span><span class="count"> (1,425)</span></label>
+                                    <label for="loc_cd_101040"><span class="txt">강서구</span></label>
                                 </div>
                             </li>
                             <li>
                                 <div class="sri_input3">
                                     <input type="checkbox" id="loc_cd_101050" name="loc_cd" value="101050">
-                                    <label for="loc_cd_101050"><span class="txt">관악구</span><span class="count"> (901)</span></label>
+                                    <label for="loc_cd_101050"><span class="txt">관악구</span></label>
                                 </div>
                             </li>
                             <li>
                                 <div class="sri_input3">
                                     <input type="checkbox" id="loc_cd_101060" name="loc_cd" value="101060">
-                                    <label for="loc_cd_101060"><span class="txt">광진구</span><span class="count"> (832)</span></label>
+                                    <label for="loc_cd_101060"><span class="txt">광진구</span></label>
                                 </div>
                             </li>
                             <li>
                                 <div class="sri_input3">
                                     <input type="checkbox" id="loc_cd_101070" name="loc_cd" value="101070">
-                                    <label for="loc_cd_101070"><span class="txt">구로구</span><span class="count"> (2,180)</span></label>
+                                    <label for="loc_cd_101070"><span class="txt">구로구</span></label>
                                 </div>
                             </li>
                     </ul>
@@ -316,13 +303,13 @@
         <div class="viewport">
             <div class="overview" style="top: -10px;">
                 <ul id="area_ul">
-                        <li class="depth1_btn_wrapper selected on"><button type="button" class="depth1_btn_1" id=""onclick="get_job(1);" ><span class="txt">개발 </span><span class="count">(39,862)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_2" onclick="get_job(2);"><span class="txt">비즈니스 </span><span class="count">(23,595)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_3" onclick="get_job(3);"><span class="txt">마케팅,광고 </span><span class="count">(3,926)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_4" onclick="get_job(4);"><span class="txt">디자인 </span><span class="count">(6,362)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_5" onclick="get_job(5);"><span class="txt">영업 </span><span class="count">(4,317)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_6" onclick="get_job(6);"><span class="txt">고객서비스 </span><span class="count">(1,448)</span></button></li>
-                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_7" onclick="get_job(7);"><span class="txt">게임 제작 </span><span class="count">(2,637)</span></button></li>
+                        <li class="depth1_btn_wrapper selected on"><button type="button" class="depth1_btn_1" id=""onclick="get_job(1);" ><span class="txt">개발 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_2" onclick="get_job(2);"><span class="txt">비즈니스 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_3" onclick="get_job(3);"><span class="txt">마케팅,광고 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_4" onclick="get_job(4);"><span class="txt">디자인 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_5" onclick="get_job(5);"><span class="txt">영업 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_6" onclick="get_job(6);"><span class="txt">고객서비스 </span></button></li>
+                        <li class="depth1_btn_wrapper " ><button type="button" class="depth1_btn_7" onclick="get_job(7);"><span class="txt">게임 제작 </span></button></li>
                         
                 </ul>
             </div>

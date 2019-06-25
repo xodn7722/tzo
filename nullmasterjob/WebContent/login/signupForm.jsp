@@ -142,4 +142,4 @@ function checkForm(){
 
 </body>
 </html>
-<%}else{ response.sendRedirect("/taewoo2/main.jsp");}%>
+<%}else{ response.sendRedirect("/nullmasterjob/main.jsp");}%>

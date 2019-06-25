@@ -12,10 +12,10 @@
    if(result){
        if(id.equals("admin@admin") & pw.equals("nullmaster1!")){
            session.setAttribute("loginID", id);
-     	   response.sendRedirect("/taewoo2/main.jsp");
+     	   response.sendRedirect("/nullmasterjob/main.jsp");
        }else{
     	   session.setAttribute("loginID", id);
-     	   response.sendRedirect("/taewoo2/main.jsp");
+     	   response.sendRedirect("/nullmasterjob/main.jsp");
        }
     
    }else{%>

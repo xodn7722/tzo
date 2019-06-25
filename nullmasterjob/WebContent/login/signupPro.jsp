@@ -28,7 +28,7 @@
 	       dao.insertMember(vo);
    
    	       session.setAttribute("loginID", id);
-           response.sendRedirect("/taewoo2/main.jsp");
+           response.sendRedirect("/nullmasterjob/main.jsp");
 		
   }%>  
    

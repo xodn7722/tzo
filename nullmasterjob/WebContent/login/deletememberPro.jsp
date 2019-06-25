@@ -25,7 +25,7 @@
 	<div class="container">
 	
 		<div class="col-md-4">
-		<form method="post" action="/taewoo2/main.jsp" name="userinput" >
+		<form method="post" action="/nullmasterjob/main.jsp" name="userinput" >
 
       <input type="submit" value="확인">
 

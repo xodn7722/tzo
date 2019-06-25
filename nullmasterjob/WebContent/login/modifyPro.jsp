@@ -25,8 +25,8 @@
 		</div>
 
       <form>
-	    <input type="button" value="메인으로" onclick="window.location='/taewoo2/main.jsp'">
+	    <input type="button" value="메인으로" onclick="window.location='/nullmasterjob/main.jsp'">
       </form>
-      5초후에 메인으로 이동합니다.<meta http-equiv="Refresh" content="5;url=/taewoo2/main.jsp" >
+      5초후에 메인으로 이동합니다.<meta http-equiv="Refresh" content="5;url=/nullmasterjob/main.jsp" >
 
 </body>

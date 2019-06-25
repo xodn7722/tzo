@@ -1,5 +1,5 @@
 package work.bean.vd;
-
+1
 public class WorkDataBean {
 	private int jno;
 	private String jname;

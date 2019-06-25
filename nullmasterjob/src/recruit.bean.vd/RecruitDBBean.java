@@ -1,5 +1,5 @@
 package recruit.bean.vd;
-
+1
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

@@ -58,6 +58,7 @@
 
 	<div class="container">
 		<jsp:include page="NewFile2.jsp" />
+		<br>
 		<div class="row" align="center">
 		<% if(count ==0){ %>
 		<h1>저장된 글이 없습니다.</h1>

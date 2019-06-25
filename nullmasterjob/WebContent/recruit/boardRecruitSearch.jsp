@@ -1,4 +1,4 @@
-1<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="recruit.bean.vd.*" %>
 <%@ page import="area.bean.vd.*" %>
@@ -57,7 +57,9 @@
  	<br>
 
 	<div class="container">
+	<br>
 		<jsp:include page="NewFile2.jsp" />
+		<br>
 		<div class="row" align="center">
 		<% if(count==0){ %>
 		<h1>검색결과가 없습니다.</h1>

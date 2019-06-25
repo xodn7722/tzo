@@ -52,7 +52,7 @@
 
 
 <body>
-    <form id='get_area_form' name="search_panel_form" action="Result.jsp" method="post" onSubmit="goSubmit()">
+    <form id='get_area_form' name="search_panel_form" action="boardRecruitSearch.jsp" method="post" onSubmit="goSubmit()">
         <fieldset>
             <div class="wrap_main_panel">
                 <div class="default_option">
@@ -374,7 +374,7 @@
     <div class="area_btn">
         <button type="button" class="btn_expand" style="display: none;">펼쳐보기</button>
     </div>
-    <button type="submit" id="search_btn" class="btn_search" >
+    <button type="submit" id="search_btn" class="btn_search">
         <span>
             <span class="count"><span id="search_count_txt"> </span>
             <span id="search_btn_txt">검색완료</span>

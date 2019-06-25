@@ -8,6 +8,5 @@
 <%
 	ResumeDAO dao = ResumeDAO.getInstance();
 	dao.insertResume(resume);
-	
 	response.sendRedirect("boardResume.jsp");
 %>

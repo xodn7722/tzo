@@ -135,6 +135,7 @@ private static RecruitDBBean instance = new RecruitDBBean();
 			// TODO: handle exception
 			   e.printStackTrace();
 		} finally {
+			 if(rs != null) {try {rs.close();}catch(SQLException s) {}}
             if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
             if(conn != null) {try {conn.close();}catch(SQLException s) {}}
             }
@@ -175,6 +176,7 @@ private static RecruitDBBean instance = new RecruitDBBean();
 	} catch(Exception e){
 		e.printStackTrace();
 		} finally {
+			 if(rs != null) {try {rs.close();}catch(SQLException s) {}}
 			if (pstmt!=null) try {	pstmt.close();	} catch (SQLException e) {}
 			if (conn!=null) try {	conn.close();	} catch (SQLException e) {}
 		}
@@ -214,7 +216,8 @@ private static RecruitDBBean instance = new RecruitDBBean();
 		}
 	} catch(Exception e){
 		e.printStackTrace();
-		} finally {
+		} finally { 
+			if(rs != null) {try {rs.close();}catch(SQLException s) {}}
 			if (pstmt!=null) try {	pstmt.close();	} catch (SQLException e) {}
 			if (conn!=null) try {	conn.close();	} catch (SQLException e) {}
 		}
@@ -251,6 +254,7 @@ private static RecruitDBBean instance = new RecruitDBBean();
 	} catch(Exception e){
 		e.printStackTrace();
 		} finally {
+			 if(rs != null) {try {rs.close();}catch(SQLException s) {}}
 			if (pstmt!=null) try {	pstmt.close();	} catch (SQLException e) {}
 			if (conn!=null) try {	conn.close();	} catch (SQLException e) {}
 		}
@@ -289,6 +293,7 @@ private static RecruitDBBean instance = new RecruitDBBean();
 	} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
+			 if(rs != null) {try {rs.close();}catch(SQLException s) {}}
 			 if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
 	         if(conn != null) {try {conn.close();}catch(SQLException s) {}}
 		}
@@ -314,6 +319,7 @@ private static RecruitDBBean instance = new RecruitDBBean();
 			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
+			 if(rs != null) {try {rs.close();}catch(SQLException s) {}}
 			 if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
 	         if(conn != null) {try {conn.close();}catch(SQLException s) {}}
 		}
@@ -355,5 +361,65 @@ private static RecruitDBBean instance = new RecruitDBBean();
 			if(conn != null) { try {conn.close();} catch(SQLException s) {}}
 		}
 	}
+	
+	public List getSearch(String search){
+			List list = null;
+			try {
+				conn = getConnection();
+				sql = "select * from recruit where area=? or job_c=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, search);
+				pstmt.setString(2, search);
+				rs= pstmt.executeQuery();
+				if(rs.next()) {
+					list = new ArrayList();
+				do {
+					RecruitDataBean recruit = new RecruitDataBean();
+					recruit.setEmail_id(rs.getString("email_id"));
+					recruit.setSubject(rs.getString("subject"));
+					recruit.setArea(rs.getString("area"));
+					recruit.setJob_c(rs.getString("job_c"));
+					recruit.setImg(rs.getString("img"));
+					recruit.setAddress(rs.getString("address"));
+					recruit.setRecruit_code(rs.getInt("recruit_code"));
+					recruit.setCompensation(rs.getInt("compensation"));
+					recruit.setContent(rs.getString("content"));
+					recruit.setEnd_date(rs.getDate("end_date"));
+					list.add(recruit);
+				} while(rs.next()); 
+			}
+		} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				 if(rs != null) {try {rs.close();}catch(SQLException s) {}}
+				 if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
+		         if(conn != null) {try {conn.close();}catch(SQLException s) {}}
+			}
+			return list;
+	}
+	
+	public int searchCount(String search) {
+		int x= 0;
+		try {
+			conn = getConnection();
+			sql ="select count(*) from recruit where area=? or job_c=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				x = rs.getInt(1);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			 if(rs != null) {try {rs.close();}catch(SQLException s) {}}
+			 if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
+	         if(conn != null) {try {conn.close();}catch(SQLException s) {}}
+		}
+		return x;
+	}
+	
 }
 

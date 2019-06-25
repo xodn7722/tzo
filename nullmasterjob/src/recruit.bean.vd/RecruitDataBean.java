@@ -1,5 +1,5 @@
 package recruit.bean.vd;
-
+1
 import java.sql.Date;
 
 public class RecruitDataBean {

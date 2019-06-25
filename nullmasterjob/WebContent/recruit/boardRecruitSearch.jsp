@@ -1,4 +1,4 @@
-<%@page import="java.text.DecimalFormat"%>
+1<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="recruit.bean.vd.*" %>
 <%@ page import="area.bean.vd.*" %>

@@ -80,6 +80,7 @@ private static FileDBBean instance = new FileDBBean();
 					resume.setCode(rs.getInt("code"));
 					resume.setEmail_id(rs.getString("email_id"));
 					resume.setName(rs.getString("name"));
+					resume.setSubject(rs.getString("subject"));
 					FileList.add(resume);
 				} while(rs.next());
 			}
@@ -90,5 +91,31 @@ private static FileDBBean instance = new FileDBBean();
 			if (conn!=null) try {	conn.close();	} catch (SQLException e) {}
 		}
 		return FileList;
+	}
+	
+	public FileDataBean getFile(String name,String email) {
+		FileDataBean vo = null;
+		try {
+			conn = getConnection();
+			sql ="select * from resumefile where name=? and email_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				vo = new FileDataBean();
+				vo.setCode(rs.getInt("code"));
+				vo.setEmail_id(rs.getString("email_id"));
+				vo.setName(rs.getString("name"));
+				vo.setSubject(rs.getString("subject"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			 if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
+	         if(conn != null) {try {conn.close();}catch(SQLException s) {}}
+		}
+		return vo;
 	}
 }

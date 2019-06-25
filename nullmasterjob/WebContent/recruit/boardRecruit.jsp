@@ -1,11 +1,7 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="recruit.bean.vd.*" %>
-<%@page import ="web.bean.dao.SearchDAO" %>
-<%@page import ="web.bean.vo.AreaVO" %>
-<%@page import ="web.bean.vo.JobSubVO" %>
-<%@page import ="web.bean.vo.JobDetailVO" %>
-<%@page import ="web.bean.vo.JobVO" %>
+<%@ page import="area.bean.vd.*" %>
 <%@page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -15,16 +11,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="bootstrap.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="table style.css" rel="stylesheet" type="text/css"/>
-	<link href="tinyscrollbar.css" rel="stylesheet" type="text/css"/>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-	<script type="text/javascript" src="jquery.tinyscrollbar.min.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  
   <title>구인 게시판</title>
   <style>
     body { 
@@ -63,10 +51,11 @@
   %>
 </head>
 <body>
+ 	<jsp:include page="/menu/menu.jsp" />
+ 	<br>
 
-  	<jsp:include page="/menu/menu.jsp" />
 	<div class="container">
-		<jsp:include page="/recruit/NewFile2.jsp" />///
+		<jsp:include page="NewFile2.jsp" />
 		<div class="row" align="center">
 		<% if(count ==0){ %>
 		<h1>저장된 글이 없습니다.</h1>
@@ -84,9 +73,6 @@
 				</a>
 			</div>
 			<%
-				}
-				if(){
-					
 				}
 			}
 			%>

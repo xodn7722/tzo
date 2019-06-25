@@ -1,18 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import = "web.member.dao.MemberDAO" %>
-<%@ page import = "web.member.vo.MemberVO" %>
+<%@ page import="member.bean.vd.*"%>
 <% request.setCharacterEncoding("UTF-8");%>
 <html>
 <head>
 
 </head>
-<jsp:useBean id="vo" class="web.member.vo.MemberVO">
+<jsp:useBean id="vo" class="member.bean.vd.MemberDataBean">
     <jsp:setProperty name="vo" property="*" />
 </jsp:useBean>
 <% 
     String id = request.getParameter("email_id");
     vo.setEmail_id(id);
-	MemberDAO dao = MemberDAO.getInstance();
+	MemberDBBean dao = MemberDBBean.getInstance();
     dao.updateMember(vo);
 %>
 <body>

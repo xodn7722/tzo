@@ -8,10 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-   	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css?ver=1">
-	<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
-	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+	<jsp:include page="/menu/menu.jsp"/>
+
  <style>
     body { 
       margin: 0px;
@@ -68,9 +66,8 @@
 <%
 	String str = request.getParameter("code");
 	int index = Integer.parseInt(str);
-	ResumeDAO dao = ResumeDAO.getInstance();
-	ResumeVO vo = dao.getResume(index);
-	
+	ResumeDBBean dao = ResumeDBBean.getInstance();
+	ResumeDataBean vo = dao.getResume(index);
 %>
 
   <script type="text/javascript">
@@ -97,7 +94,6 @@
 <title><%=vo.getResume_title() %></title>
 </head>
 <body>
-<jsp:include page="/menu/menu.jsp" />
 <div class="null"> </div>
 	<div class="container">
 		<div class="row" align="center">

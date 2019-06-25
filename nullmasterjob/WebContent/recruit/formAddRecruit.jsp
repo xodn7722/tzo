@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="web.member.dao.*" %>
-<%@ page import="web.member.vo.*" %>
+<%@ page import="member.bean.vd.*"%>
+<%@ page import="area.bean.vd.*" %>
+<%@ page import="job.bean.vd.*" %>
+<%@ page import="java.util.List" %>
+<%@ page import="company.bean.vd.*" %>
+<%@ page import="city.bean.vd.*" %>
+<%@ page import="work.bean.vd.*" %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
 	
 <script language="javascript">
 // opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
@@ -36,19 +41,40 @@ function jusoCallBack(roadFullAddr){
 </head>
 <body>
 
+	<jsp:include page="/menu/menu.jsp"/>
+
+
 	<% if(session.getAttribute("loginID")== null){%>
 	<script>
-		alert("권한이 없습니다.")
+		alert("로그인을 해주십시오.");
+		history.go(-1);
 	</script>
-	<%} else {
-	String id = (String)session.getAttribute("loginID");
-	MemberDAO dao = MemberDAO.getInstance();
-	MemberVO vo = dao.getMember(id);
-%>
- 	<jsp:include page="/menu/menu.jsp"/>
+	<%
+		} else {
+		String id = (String)session.getAttribute("loginID");
+		MemberDBBean dao = MemberDBBean.getInstance();
+		MemberDataBean vo = dao.getMember(id);
+		AreaDBBean adao = AreaDBBean.getInstance();
+		JobDBBean jdao = JobDBBean.getInstance();
+		CityDBBean ctdao = CityDBBean.getInstance();
+		WorkDBBean wdao = WorkDBBean.getInstance();
+		String str = null;
+		CompanyDBBean cdao = CompanyDBBean.getInstance();
+		CompanyDataBean cvo = cdao.getCompany(id);
+		
+		List area = null;
+		List job=null;
+		int areacount = 0, jobcount=0;
+		if(!vo.getMem_level().equals("기업회원")){
+	%>
+		<script type="text/javascript">
+			alert("기업을 등록하셔야 작성이 가능합니다.");
+			history.go(-1);
+		</script>
+		<% } else { %>
 	<center>
 	<div class="container" align="center">
-		<div class="col-md-4 col-md-offset-4">
+		<div class="col-md-6 col-md-offset-4">
 			<h3 class="form-signin-heading">구인 등록</h3>
 			<form class="form-signin" name=form id=form action="processInsert.jsp" method="post" enctype="multipart/form-data">
 				<div class="form-group">
@@ -67,21 +93,47 @@ function jusoCallBack(roadFullAddr){
 				</div>
 				
 				<div class="form-group">
-					<label for="inputEventUrl" class="sr-only">그룹1</label>
-					<input type="text" class="form-control" placeholder="그룹1" name="group1" required>
-				</div>
-				
-				<div class="form-group">
-					<label for="inputEventUrl" class="sr-only">그룹2</label>
-					<input type="text" class="form-control" placeholder="그룹2" name="group2" required>
-				</div>
-				
-				<div class="form-group">
 					<label for="inputEventUrl" class="sr-only">주소</label>
 					<input type="text" class="form-control" placeholder="주소" id="address" name="address" required readonly >
 					<input type="button" onClick="goPopup();" value="주소 찾기"/>
 				</div>
 				
+				<div class="form-group">
+					<select class="form-control" name="area">
+					<% for(int i =0; i < 17; i++ ){
+					int x = i+1;
+					areacount = adao.getCount(x);
+					area = adao.getAreaNames(x);
+					str = ctdao.getCityName(x); %>
+					<optgroup label="<%=str%>" style="color: black;">
+					<%	for(int j =0; j < areacount; j++) {
+						AreaDataBean avo = (AreaDataBean)area.get(j);	%>
+					<option value="<%=avo.getAsname()%>"><%=avo.getAsname()%></option>
+					<%} 
+					}%>
+					</optgroup>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<select class="form-control" name="job_c">
+					<% for(int i =0; i < 7; i++ ){
+					int x = i+1;
+					jobcount = jdao.getCount(x);
+					job = jdao.getJabNames(x);
+					str = wdao.getJobName(x); %>
+					<optgroup label="<%=str%>" style="color: black;" >
+					<%
+						for(int j =0; j < jobcount; j++) {
+									JobDataBean jvo = (JobDataBean)job.get(j);
+					%>
+					<option value="<%=jvo.getJsname()%>"><%=jvo.getJsname()%></option>
+					<%} 
+					}%>
+					</optgroup>
+					</select>
+				</div>
+						
 				
 				<div class="form-group">
 					<label for="inputEventUrl" class="sr-only">구인 기간</label>
@@ -93,21 +145,25 @@ function jusoCallBack(roadFullAddr){
 					<textarea class="form-control" rows="15" cols="20" name="content"></textarea>
 				</div>
 				
-	
-				
 				<div class="form-group">
 					<label for="inputPassword" class="sr-only">Email</label> 
 					<input	type="email" class="form-control" value="<%=vo.getEmail_id() %>" name="email_id" readonly>
 				</div>
 				
+				<div class="form-group">
+					<label for="inputPassword" class="sr-only">회사명</label> 
+					<input	type="text" class="form-control" value="<%=cvo.getName() %>" name="company_name" readonly>
+				</div>
+				
 				  <div class="form-group">
-   					 <input type="file"  name="img" required>
+   					 <input type="file"  name="img" >
    					 <p class="help-block">회사관련 이미지를 업로드하십시오.</p>
   					</div>
 				<button class="btn btn btn-lg btn-success btn-block" type="submit">업로드</button>
 			</form>
 		</div>
 	</div>
-	<%} %>
+	<%}
+	}%>
 </body>
 </html>

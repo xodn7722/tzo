@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="web.member.dao.MemberDAO" %>
-<%@ page import="web.member.vo.MemberVO" %>
+<%@ page import="member.bean.vd.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%
   String id = request.getParameter("id");
   
-  MemberDAO dao = MemberDAO.getInstance();
-  MemberVO vo = dao.getMember(id);
+  MemberDBBean dao = MemberDBBean.getInstance();
+  MemberDataBean vo = dao.getMember(id);
   
 %>
 <script language="javascript">
@@ -84,7 +83,7 @@ function checkForm(){
           if(vo.getUserEmailChecked() == 1){ m = r; }else{ m = ro;}
         %>
           <label class="col-sm-3 col-form-label"> 인증정보 </label>
-          <input class="form-control ml-2 mx-2" type="text" name="userEmailChecked" value="<%=m%>" />
+          <input class="form-control ml-2 mx-2" type="text" name="userEmailChecked" value="<%=m%>" disabled/>
           
         </div>
          </div>

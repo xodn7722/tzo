@@ -12,8 +12,9 @@
 
 </head>
 <body>
-		<jsp:include page="/menu/menu.jsp"/>
-		
+
+	<jsp:include page="/menu/menu.jsp"/>
+	
 		<br/>
 <h1 align="center" class="">이력서 쓰기</h1></br>
 <form action="processWrite.jsp" method="post" name="my" onsubmit="return checkForm();">

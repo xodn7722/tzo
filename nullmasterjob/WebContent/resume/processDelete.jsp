@@ -5,7 +5,7 @@
 <%
 	String str = request.getParameter("code");
 	int index = Integer.parseInt(str);
-	ResumeDAO dao = ResumeDAO.getInstance();
+	ResumeDBBean dao = ResumeDBBean.getInstance();
 	dao.deleteResume(index);
 	
 	response.sendRedirect("boardResume.jsp");

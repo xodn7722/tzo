@@ -36,7 +36,10 @@ function jusoCallBack(roadFullAddr){
 %>
 </head>
 <body>
- 	<jsp:include page="/menu/menu.jsp"/>
+
+	<jsp:include page="/menu/menu.jsp"/>
+
+
  	
  	<%  if (session.getAttribute("loginID")==null){ %>
  		<script>
@@ -64,11 +67,11 @@ function jusoCallBack(roadFullAddr){
 				</div>
 				
 				<div class="form-group">
-					<input type="text" class="form-control" value="<%=vo.getGroup1() %>" name="group1" required>
+					<input type="text" class="form-control" value="<%=vo.getArea() %>" name="area" required>
 				</div>
 				
 				<div class="form-group">
-					<input type="text" class="form-control" value="<%=vo.getGroup2() %>"  name="group2" required>
+					<input type="text" class="form-control" value="<%=vo.getJob_c() %>"  name="job_c" required>
 				</div>
 				
 				<div class="form-group">

@@ -2,7 +2,7 @@
 <%@ page import="member.bean.vd.*" %>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
-<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css?ver=1">
 <script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
 <script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 <script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
@@ -64,6 +64,7 @@ function next(){
           	 <span class="caret">기업 관리</span>
         </a>
         <ul class="dropdown-menu" role="menu">
+          <li><a  href="/ProjectTest/company/contentCompany.jsp?email_id=<%=id%>">기업 홈페이지</a></li>
           <li><a href="/ProjectTest/recruit/formAddRecruit.jsp">구인 글쓰기</a></li>
           <li><a href="/ProjectTest/applicant/boardList.jsp">구인 현황</a></li>
           <li><a href="/ProjectTest/eventboard/writeForm.jsp">프리미엄 광고 신청</a></li>

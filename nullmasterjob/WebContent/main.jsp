@@ -141,6 +141,7 @@
 		
 		for (int i=0; i< count; i++) {
 			RecruitDataBean forvo = (RecruitDataBean)recruitList.get(i);
+			str = ctdao.getCityName(forvo.getArea());
 			DecimalFormat df = new DecimalFormat("###,###,###,###");
 			String compensation = df.format(forvo.getCompensation());%>
 			<div class="col-md-3">
@@ -148,7 +149,8 @@
 				<img src="/ProjectTest/resources/recruit/<%=forvo.getImg()%>" style="width: 100%; height: 80%"></a>
 				<a class="btn btn-default" href="contentRecruit.jsp?recruit_code=<%=forvo.getRecruit_code() %>">
 				<h6><%=forvo.getSubject()%></h6>
-				<p><%=compensation%></p>
+				<p><%=str%>·<%=forvo.getArea() %>
+				 / 보상금: <%=compensation%></p>
 				</a>
 			</div>
 	<%	}  

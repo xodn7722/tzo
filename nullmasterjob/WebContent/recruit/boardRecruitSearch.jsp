@@ -6,6 +6,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="search.bean.vd.*" %>
 <%@ page import="job.bean.vd.*" %>
+<%@ page import="city.bean.vd.*" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="recruit"  class="recruit.bean.vd.RecruitDataBean">
 	<jsp:setProperty name="recruit" property="*"/>
@@ -41,12 +42,14 @@
 	    int endRow = currentPage * pageSize;  	// 1~10까지 가져오기위한거
 	    int number=0;
 	    int count = 0;
+	    String str = null;
 	    
 	    
 	    
 	    DecimalFormat df = new DecimalFormat("###,###,###,###");
 	    RecruitDBBean dao = RecruitDBBean.getInstance();
-    
+    	CityDBBean ctdao = CityDBBean.getInstance();
+    	
 	    for(int i = 0; i< area.length;i++){
 	    	count += dao.searchCount(area[i]);
 	    }
@@ -69,13 +72,15 @@
 		count = dao.searchCount(area[i]);
 				for (int j=0; j< count; j++) {
 					RecruitDataBean vo = (RecruitDataBean)recruitList.get(j);
+					str = ctdao.getCityName(vo.getArea());
 					String compensation = df.format(vo.getCompensation());
 			%>
 			<div class="col-md-3">
 				<a href="contentRecruit.jsp?recruit_code=<%=vo.getRecruit_code()%>"><img src="/ProjectTest/resources/recruit/<%=vo.getImg()%>" style="width: 100%; height: 70%"></a>
 				<a class="btn btn-default" href="contentRecruit.jsp?recruit_code=<%=vo.getRecruit_code() %>">
 				<h6><%=vo.getSubject()%></h6>
-				<p>보상금: <%=compensation%></p> 
+				<p><%=str%>·<%=vo.getArea() %>
+				 / 보상금: <%=compensation%></p>
 				</a>
 			</div>
 			<%

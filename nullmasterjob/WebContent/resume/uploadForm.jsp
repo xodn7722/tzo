@@ -14,8 +14,8 @@
 </head>
 <body>
 <form action="processUpload.jsp" method="post" enctype="multipart/form-data">
-	<input type="text" name="subject" placeholder="제목">
-	<input type="file" name="file">
+	<input type="text" name="subject" placeholder="제목" readonly>
+	<input type="file" name="file" readonly>
 	<div class="null"></div>
 	<div class="text-center" >
 	<input class="btn btn-primary" type="submit" value="업로드">

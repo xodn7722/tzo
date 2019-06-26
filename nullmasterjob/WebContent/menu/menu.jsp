@@ -53,6 +53,9 @@ function logout(){
       </li>
         </ul>
 	</div>
+	    <%} else if(vo.getUserEmailChecked() == 0 && vo.getMem_level().equals("일반회원")) {%>
+	    </ul>
+	</div>
 	    <%} %>
 	 <%  if(vo.getMem_level().equals("기업회원")){
 		%>

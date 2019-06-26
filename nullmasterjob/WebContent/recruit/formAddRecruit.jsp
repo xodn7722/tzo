@@ -26,9 +26,10 @@ function goPopup(){
 }
 
 
-function jusoCallBack(roadFullAddr){
+function jusoCallBack(roadFullAddr,sggNm){
 		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
 		document.form.address.value = roadFullAddr;
+		document.form.area.value = sggNm;
 }
 
 </script>
@@ -99,20 +100,8 @@ function jusoCallBack(roadFullAddr){
 				</div>
 				
 				<div class="form-group">
-					<select class="form-control" name="area">
-					<% for(int i =0; i < 17; i++ ){
-					int x = i+1;
-					areacount = adao.getCount(x);
-					area = adao.getAreaNames(x);
-					str = ctdao.getCityName(x); %>
-					<optgroup label="<%=str%>" style="color: black;">
-					<%	for(int j =0; j < areacount; j++) {
-						AreaDataBean avo = (AreaDataBean)area.get(j);	%>
-					<option value="<%=avo.getAsname()%>"><%=avo.getAsname()%></option>
-					<%} 
-					}%>
-					</optgroup>
-					</select>
+					<label for="inputEventUrl" class="sr-only">시군구</label>
+					<input type="text" class="form-control"  name="area" id="area" readonly >
 				</div>
 				
 				<div class="form-group">

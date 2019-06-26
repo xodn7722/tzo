@@ -142,7 +142,7 @@ function jusoCallBack(roadFullAddr,sggNm){
 				</div>
 				
 				  <div class="form-group">
-   					 <input type="file"  name="img" >
+   					 <input type="file"  name="img"  required>
    					 <p class="help-block">회사관련 이미지를 업로드하십시오.</p>
   					</div>
 				<button class="btn btn btn-lg btn-success btn-block" type="submit">업로드</button>

@@ -121,7 +121,7 @@ function jusoCallBack(roadFullAddr){
   					</div>
   					
   					<div class="form-group">
-   					 <input type="file" name="img">
+   					 <input type="file" name="img" required>
    					 <p class="help-block">메인으로 보여줄 이미지 입니다.</p>
   					</div>
 				<button class="btn btn btn-lg btn-success btn-block" type="submit" onclick="return check()">등록</button>

@@ -1,26 +1,14 @@
-
 <%@page import="javax.mail.Transport"%>
-
 <%@page import="javax.mail.Message"%>
-
 <%@page import="javax.mail.Address"%>
-
 <%@page import="javax.mail.internet.InternetAddress"%>
-
 <%@page import="javax.mail.internet.MimeMessage"%>
-
 <%@page import="javax.mail.Session"%>
-
 <%@page import="javax.mail.Authenticator"%>
-
 <%@page import="java.util.Properties"%>
-
 <%@page import="java.io.PrintWriter"%>
-
-<%@page import="web.member.dao.MemberDAO"%>
-
+<%@page import="member.bean.vd.*"%>
 <%@page import="util.SHA256"%>
-
 <%@page import="util.Gmail"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -28,7 +16,7 @@
 <%  
     
    
-    MemberDAO dao = MemberDAO.getInstance();
+    MemberDBBean dao = MemberDBBean.getInstance();
     
 
 	String loginID = null;

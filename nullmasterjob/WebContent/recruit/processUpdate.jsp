@@ -5,8 +5,8 @@
 <jsp:useBean id="recruit" class="recruit.bean.vd.RecruitDataBean">
 <jsp:setProperty name="recruit" property="subject" />
 <jsp:setProperty name="recruit" property="content" />
-<jsp:setProperty name="recruit" property="group1" />
-<jsp:setProperty name="recruit" property="group2" />
+<jsp:setProperty name="recruit" property="area" />
+<jsp:setProperty name="recruit" property="job_c" />
 </jsp:useBean>
 
 

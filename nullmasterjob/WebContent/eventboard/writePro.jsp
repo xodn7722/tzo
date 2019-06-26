@@ -1,12 +1,9 @@
 <%@ page contentType="text/html;charset=euc-kr" %>
-<%@ page import = "board.bean.BoardDBBean" %>
+<%@ page import = "board.bean.vd.*" %>
 <%@ page import = "java.sql.Timestamp" %>
 
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
-
-<jsp:useBean id="article" scope="page" class="board.bean.BoardDataBean">
+<%request.setCharacterEncoding("UTF-8");%>
+<jsp:useBean id="article" scope="page" class="board.bean.vd.BoardDataBean">
    <jsp:setProperty name="article" property="*"/>
 </jsp:useBean>
  
@@ -17,5 +14,5 @@
     BoardDBBean dbPro = BoardDBBean.getInstance();
     dbPro.insertArticle(article);
 
-    response.sendRedirect("main.jsp");
+    response.sendRedirect("/ProjectTest/main.jsp");
 %>

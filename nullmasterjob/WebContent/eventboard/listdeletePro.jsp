@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=euc-kr" %>
-<%@ page import = "board.bean.BoardDBBean" %>
+<%@ page import = "board.bean.vd.*" %>
 <%@ page import = "java.sql.Timestamp" %>
 
 <% request.setCharacterEncoding("UTF-8");%>

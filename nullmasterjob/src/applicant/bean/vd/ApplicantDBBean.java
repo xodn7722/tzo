@@ -11,7 +11,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import recruit.bean.vd.RecruitDataBean;
 
 public class ApplicantDBBean {
 	private static  ApplicantDBBean instance= new ApplicantDBBean();

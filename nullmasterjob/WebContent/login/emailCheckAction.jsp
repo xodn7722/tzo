@@ -2,7 +2,7 @@
 
 <%@page import="util.SHA256"%>
 
-<%@page import="web.member.dao.MemberDAO"%>
+<%@page import="member.bean.vd.*"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
@@ -19,7 +19,7 @@
 
 	String code = request.getParameter("code");
 
-	MemberDAO dao = MemberDAO.getInstance();
+	MemberDBBean dao = MemberDBBean.getInstance();
 
 	String loginID = null;
 

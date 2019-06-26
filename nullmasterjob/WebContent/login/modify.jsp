@@ -1,18 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="web.member.dao.MemberDAO" %>
-<%@ page import="web.member.vo.MemberVO" %>
+<%@ page import="member.bean.vd.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <%
-  String id = (String)session.getAttribute("loginID");
+	String id = (String)session.getAttribute("loginID");
 
-  MemberDAO dao = MemberDAO.getInstance();
-  MemberVO vo = dao.getMember(id);
-  
+  MemberDBBean dao = MemberDBBean.getInstance();
+  MemberDataBean vo = dao.getMember(id);
 %>
-<script language="javascript">
+
+<script type="text/javascript">
+function sendmail(){
+	location.href="emailSendAction.jsp";
+	}
+function backhome(){
+	history.go(-1);
+}
+
 function checkForm(){
 	
 	var regInt= /^[0-9]*$/;
@@ -31,15 +37,7 @@ function checkForm(){
 			c.age.focus();
 			return false;
 		}
-}
-	
-</script>
-<script type="text/javascript">
-function sendmail(){
-	location.href="emailSendAction.jsp";
-	}
-function backhome(){
-	history.go(-1);
+		alert("수정이 완료되었습니다.");
 }
 </script>
 </head>
@@ -47,7 +45,7 @@ function backhome(){
    <jsp:include page="/menu/menu.jsp" />
    <div class="form-group" align="center">
      <h1>회원정보</h1>
-     <form action="modifyPro.jsp" method="post" onsubmit="return checkForm();" >
+     <form name="my" action="modifyPro.jsp" method="post">
         <div class="col-sm-4">
         <div class="form-group row">
           <label class="col-sm-1 col-form-label"> Email </label>
@@ -97,7 +95,7 @@ function backhome(){
          </div>
           <div align="center">
       <div class="form-group">
-      <input type="submit" class="btn btn-primary" value="정보수정">
+      <input type="submit" class="btn btn-primary" value="정보수정" onclick="return checkForm()">
       <input type="button" class="btn btn-primary" value="회원탈퇴" onclick="javascript:window.location='deletemember.jsp'">
      <input type="button" class="btn btn-primary" value="뒤로가기" onclick="backhome()"> 
       </div>

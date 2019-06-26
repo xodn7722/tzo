@@ -6,10 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css?ver=1">
-<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
-	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+
 <%
 	request.setCharacterEncoding("UTF-8");
 

@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="web.member.dao.MemberDAO"%>
-<%@ page import="web.member.vo.MemberVO" %>
+<%@ page import="member.bean.vd.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%
-  String id = request.getParameter("id");
+	String id = request.getParameter("id");
   
-  MemberDAO dao = MemberDAO.getInstance();
-  MemberVO vo = dao.getMember(id);
-  
+  MemberDBBean dao = MemberDBBean.getInstance();
+  MemberDataBean vo = dao.getMember(id);
 %>
 <script language="javascript">
 function checkForm(){

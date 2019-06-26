@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "board.bean.BoardDBBean" %>
-<%@ page import = "board.bean.BoardDataBean" %>
+<%@ page import = "board.bean.vd.*" %>
+
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%!

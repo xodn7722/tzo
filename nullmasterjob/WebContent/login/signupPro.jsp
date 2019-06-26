@@ -1,18 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ page import="util.SHA256"%>
-
 <%@ page import="java.io.PrintWriter"%>
-
-<%@ page import="web.member.dao.MemberDAO" %>
+<%@ page import="member.bean.vd.*" %>
 <% request.setCharacterEncoding("UTF-8");%>
-<jsp:useBean id="vo" class="web.member.vo.MemberVO" />
+<jsp:useBean id="vo" class="member.bean.vd.MemberDataBean" />
 <jsp:setProperty property="*" name="vo" />
 
 <%
    String id = request.getParameter("email_id");
-   MemberDAO dao = MemberDAO.getInstance();
+   MemberDBBean dao = MemberDBBean.getInstance();
    int check = dao.confirmId(id);
 
    if( check == 1){%>

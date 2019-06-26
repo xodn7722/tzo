@@ -1,35 +1,22 @@
-
 <%@page import="javax.mail.Transport"%>
-
 <%@page import="javax.mail.Message"%>
-
 <%@page import="javax.mail.Address"%>
-
 <%@page import="javax.mail.internet.InternetAddress"%>
-
 <%@page import="javax.mail.internet.MimeMessage"%>
-
 <%@page import="javax.mail.Session"%>
-
 <%@page import="javax.mail.Authenticator"%>
-
 <%@page import="java.util.Properties"%>
-
 <%@page import="java.io.PrintWriter"%>
-
-<%@page import="web.member.dao.MemberDAO"%>
-<%@ page import="web.member.vo.MemberVO" %>
+<%@page import="member.bean.vd.*"%>
 <%@page import="util.SHA256"%>
-
 <%@page import="util.Gmail"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%  
-    
-    String id = request.getParameter("email_id");
-    MemberDAO dao = MemberDAO.getInstance();
-    MemberVO vo = dao.getMember(id);
+<%
+	String id = request.getParameter("email_id");
+    MemberDBBean dao = MemberDBBean.getInstance();
+    MemberDataBean vo = dao.getMember(id);
 
 	// 사용자에게 보낼 메시지를 기입합니다.
 
@@ -110,7 +97,8 @@
 		script.close();		
 
 	    return;
-}%>
+}
+%>
 
 <script language="javascript">
 alert("비밀번호전송완료");

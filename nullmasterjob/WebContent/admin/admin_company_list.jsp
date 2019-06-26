@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="web.member.dao.MemberDAO"%>
+<%@ page import="member.bean.vd.*"%>
 <%@page import="company.bean.vd.*" %>
 <%@page import="java.util.ArrayList"%>
  
-<jsp:useBean id="vo" class="web.member.vo.MemberVO">
+<jsp:useBean id="vo" class="member.bean.vd.MemberDataBean">
     <jsp:setProperty name="vo" property="*" />
     </jsp:useBean>
 <!DOCTYPE html>

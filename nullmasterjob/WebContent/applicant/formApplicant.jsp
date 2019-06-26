@@ -3,7 +3,6 @@
 <%@ page import="resume.bean.vd.*" %>
 <%@ page import="company.bean.vd.*" %>
 <%@ page import="file.bean.vd.*" %>
-
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>

@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@page import="java.text.DecimalFormat"%>
-
 <%@page import="java.sql.*"%>
-
 <%@page import="java.util.*"%>
-
 <%@page import="org.json.simple.JSONObject"%>
 <%
 

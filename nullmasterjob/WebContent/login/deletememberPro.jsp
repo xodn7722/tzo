@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=utf-8" %>
-<%@ page import = "web.member.dao.MemberDAO" %>
+<%@ page import = "member.bean.vd.*" %>
 <html>
 <head>
 <title>회원탈퇴</title>
@@ -9,7 +9,7 @@
     String id = (String)session.getAttribute("loginID");
 	String pw  = request.getParameter("pw");
 	
-	MemberDAO manager = MemberDAO.getInstance();
+	MemberDBBean manager = MemberDBBean.getInstance();
     int check = manager.deleteMember(id,pw);
 	
 	if(check==1){

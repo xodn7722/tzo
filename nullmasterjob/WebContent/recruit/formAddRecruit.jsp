@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="member.bean.vd.*"%>
-<%@ page import="area.bean.vd.*" %>
 <%@ page import="job.bean.vd.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="company.bean.vd.*" %>
-<%@ page import="city.bean.vd.*" %>
 <%@ page import="work.bean.vd.*" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -55,17 +53,16 @@ function jusoCallBack(roadFullAddr,sggNm){
 		String id = (String)session.getAttribute("loginID");
 		MemberDBBean dao = MemberDBBean.getInstance();
 		MemberDataBean vo = dao.getMember(id);
-		AreaDBBean adao = AreaDBBean.getInstance();
+		
+		
 		JobDBBean jdao = JobDBBean.getInstance();
-		CityDBBean ctdao = CityDBBean.getInstance();
 		WorkDBBean wdao = WorkDBBean.getInstance();
 		String str = null;
 		CompanyDBBean cdao = CompanyDBBean.getInstance();
 		CompanyDataBean cvo = cdao.getCompany(id);
 		
-		List area = null;
 		List job=null;
-		int areacount = 0, jobcount=0;
+		int jobcount=0;
 		if(!vo.getMem_level().equals("기업회원")){
 	%>
 		<script type="text/javascript">

@@ -58,7 +58,7 @@ public class EventDBBean {
 		List eventList = null;
 		try {
 			conn = getConnection();
-			sql = "select * from event  where end_date > sysdate";
+			sql = "select * from event  where end_date > sysdate order by code asc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {

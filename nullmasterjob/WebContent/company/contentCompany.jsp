@@ -67,7 +67,7 @@
     });
   
   function del(){
-	  var result = confirm("정말로 삭제하시겠습니까?");
+	  var result = confirm("일반회원으로 되며 현재 구인중인 글도 삭제됩니다.삭제하시겠습니까?");
 	  if(result){
 		  window.location.href = "processDelete.jsp?code=<%=cvo.getCompany_code() %>&id=<%=cvo.getEmail_id()%>";
 	  }
@@ -86,7 +86,7 @@
 	<div class="container">
 		<div class="row" align="center">
 		<div class="col-md-1">
-		<img class="headimage" src="/ProjectTest/resources/company/<%=cvo.getLogo() %>">
+		<img class="headimage" src="/Test/resources/company/<%=cvo.getLogo() %>">
 		</div>
 		<h3><%=cvo.getName() %></h3>
 	</div>
@@ -97,7 +97,7 @@
 	<div class="container">
 		<div class="row" align="center">
 		<div class="col-md-10">
-		<h1><img src="/ProjectTest/resources/company/<%=cvo.getImg() %>" style="width: 100%; height: 80%"/></h1>
+		<h1><img src="/Test/resources/company/<%=cvo.getImg() %>" style="width: 100%; height: 80%"/></h1>
 		</div>
 		</div>
 		</div>

@@ -78,6 +78,7 @@
 					<h5>저장된 파일이없습니다.</h5>
 				<% } else {%>
 				<select class="form-control" name="file_name">
+				<option value="" selected disabled hidden>==선택하세요==</option>
 				<% for(int i=0; i< filecount; i++){ 
 					FileDataBean vo = (FileDataBean)fileList.get(i); %>
 				<option value="<%=vo.getName()%>"><%=vo.getSubject()%></option>
@@ -94,6 +95,7 @@
 					<h5>저장된 이력서가없습니다.</h5>
 				<% } else {%>
 				<select class="form-control" name="resume_subject">
+				<option value="" selected disabled hidden>==선택하세요==</option>
 				<%
 					for(int i=0; i< resumecount; i++){ 
 							ResumeDataBean vo = (ResumeDataBean)resumeList.get(i);

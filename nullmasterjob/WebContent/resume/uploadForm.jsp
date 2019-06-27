@@ -13,13 +13,16 @@
  </style>
 </head>
 <body>
+<br>
+<div class="container" align="center">
 <form action="processUpload.jsp" method="post" enctype="multipart/form-data">
-	<input type="text" name="subject" placeholder="제목" readonly>
+	<input type="text" name="subject" placeholder="제목" required>
+	<br>
+	<br>
 	<input type="file" name="file" readonly>
 	<div class="null"></div>
-	<div class="text-center" >
 	<input class="btn btn-primary" type="submit" value="업로드">
-	</div>
 </form>
+</div>
 </body>
 </html>

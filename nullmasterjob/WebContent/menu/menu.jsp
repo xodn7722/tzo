@@ -67,7 +67,7 @@ function logout(){
           	 <span class="caret">기업 관리</span>
         </a>
         <ul class="dropdown-menu" role="menu">
-          <li><a  href="/Test/company/contentCompany.jsp?email_id=<%=id%>">기업 홈페이지</a></li>
+          <li><a  href="/Test/company/contentCompany.jsp?email_id=<%=id%>">기업 페이지</a></li>
           <li><a href="/Test/recruit/formAddRecruit.jsp">구인 글쓰기</a></li>
           <li><a href="/Test/applicant/boardList.jsp">구인 현황</a></li>
           <li><a href="/Test/eventboard/writeForm.jsp">프리미엄 광고 신청</a></li>

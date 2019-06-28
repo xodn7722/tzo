@@ -123,7 +123,8 @@ function jusoCallBack(roadFullAddr,sggNm){
 				
 				<div class="form-group">
 					<label for="inputEventUrl" class="sr-only">구인 기간</label>
-					<input type="text" class="form-control" placeholder="0000-00-00 까지(년-월-일)" name="end_date" required>
+					<input type="date" class="form-control" name="end_date" required>
+					<p>1년 이상 차이나면 상시로 전환됩니다.</p>
 				</div>
 				
 				<div class="form-group">

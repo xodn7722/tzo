@@ -160,6 +160,10 @@
 				<a href="processDownload.jsp?name=<%=vo.getName()%>&id=<%=vo.getEmail_id()%>">
 				<%=vo.getSubject()%>
 				</a>
+				<br>
+		</div>
+		<div align="center">
+		<button onclick="location='processFileDelete.jsp?code=<%=vo.getCode()%>&id=<%=vo.getEmail_id() %>'" class="btn btn-danger">삭제</button>
 		</div>
 		</div>
 		<%

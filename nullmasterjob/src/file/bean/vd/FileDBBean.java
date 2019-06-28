@@ -118,4 +118,59 @@ private static FileDBBean instance = new FileDBBean();
 		}
 		return vo;
 	}
+	public FileDataBean getFile(String email) {
+		FileDataBean vo = null;
+		try {
+			conn = getConnection();
+			sql ="select * from resumefile where  email_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				vo = new FileDataBean();
+				vo.setCode(rs.getInt("code"));
+				vo.setEmail_id(rs.getString("email_id"));
+				vo.setName(rs.getString("name"));
+				vo.setSubject(rs.getString("subject"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			 if(pstmt != null) {try {pstmt.close();}catch(SQLException s) {}}
+	         if(conn != null) {try {conn.close();}catch(SQLException s) {}}
+		}
+		return vo;
+	}
+	public void uploadFile(String subject, String fileName,String email_id) {
+		try {
+			conn = getConnection();
+			sql = "insert into resumefile values(resumefile_seq.NEXTVAL,?,?,?)";
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, subject);
+			pstmt.setString(2, fileName);
+			pstmt.setString(3, email_id);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			// TODO: handle finally clause
+		}
+	}
+	public void deleteFile(int code,String id) {
+		try {
+			conn = getConnection();
+			sql = "delete from resumefile where code=? and email_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+            if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+            if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+	}
 }

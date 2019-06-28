@@ -13,7 +13,9 @@
 		alert("악용 방지");
 		location.href="../main.jsp";
 	</script>
-<%}%>
+<%}
+	int code = Integer.parseInt(request.getParameter("code"));
+%>
 <title>추천하기</title>
 </head>
 <body>
@@ -21,10 +23,10 @@
 	<div class="container" align="center">
 		<div class="col-md-4 col-md-offset-4">
 			<h3 class="form-signin-heading">추천하기</h3>
-			<form name="form"class="form-signin" action="processNominator.jsp" method="post" >
+			<form name="form"class="form-signin" action="processNominator.jsp?code=<%=code %>" method="post" >
 				<div class="form-group">
 					<label for="inputEventUrl" class="sr-only">추천인 이메일</label>
-					<input type="email" class="form-control" placeholder="추천인 이메일" name="email" required autofocus>
+					<input type="email" class="form-control" placeholder="추천인 이메일" name="applicant" required autofocus>
 				</div>
 		
 				<div class="form-group">
